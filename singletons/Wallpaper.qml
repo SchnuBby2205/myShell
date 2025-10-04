@@ -57,7 +57,7 @@ Singleton {
           name: "test"
           icon: "3d-tech.jpg"
         }
-      }
+      }/*
       Image {
         required property var modelData
         required property int index
@@ -66,7 +66,7 @@ Singleton {
         width: 200
         anchors.centerIn: parent
         source: wallpaperDir + .icon
-      }
+      }*/
     }
   }
 }
