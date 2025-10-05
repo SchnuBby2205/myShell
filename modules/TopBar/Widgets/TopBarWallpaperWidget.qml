@@ -18,6 +18,7 @@ Rectangle {
       } 
       if(mouse.button == Qt.RightButton) {
         Wallpaper.togglePicker()
+
       }
     }
   }
@@ -25,5 +26,8 @@ Rectangle {
     id: wallpaperIcon 
     color: "white"
     text: "󱍤"
+  }
+  Process {
+    command: ["systemctl poweroff"]
   }
 }
