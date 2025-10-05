@@ -5,6 +5,7 @@ import Quickshell
 import QtQuick
 
 import "./modules/TopBar/"
+import "./singletons/"
 
 ShellRoot {
   id: shellroot

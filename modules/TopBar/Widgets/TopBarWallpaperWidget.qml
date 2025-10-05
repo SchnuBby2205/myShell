@@ -5,6 +5,7 @@ import QtQuick
 import "../../../singletons/"
 
 Rectangle {
+
   color: "transparent"
   implicitHeight: 20
   implicitWidth: 20

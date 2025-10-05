@@ -5,10 +5,11 @@ import Quickshell.Io
 import QtQuick
 
 Singleton {
+  id: root
 
   readonly property string wallpaperDir: "/home/schnubby/Bilder/Wallpapers/"
   property var arrWallpapers: []
-  property ListModel testWallpapers: {}
+  property ListModel testWallpapers: ListModel{} 
   property string currentWallpaper: ""
 
   function setRandomWallpaper(): void {
@@ -28,7 +29,7 @@ Singleton {
         for(var i in text.split("\n")) {
           var wallpaperName = text.split("\n")[i]
           wallpaperName != "" ? arrWallpapers.push(wallpaperName) : null
-          wallpaperName != "" ? testWallpapers.append({"name": "test", "icon":wallpaperName}) : null
+          wallpaperName != "" ? root.testWallpapers.append({name: "test", icon:wallpaperName}) : null
         }
         var rnd = Math.floor(Math.random() * (arrWallpapers.length - 1))
         currentWallpaper = wallpaperDir + arrWallpapers[rnd]
@@ -40,34 +41,21 @@ Singleton {
     id: wallpapersSetProc
     command: ["swww", "img", currentWallpaper]
   } 
-
-
   FloatingWindow {
     id: wallpaperPicker
     implicitHeight: 100
     implicitWidth: 100
     visible: false
     color: Design.main.background 
-    Row {
+    Grid {
       anchors {
-        left: parent.left
         verticalCenter: parent.verticalCenter
+        horizontalCenter: parent.horizontalCenter
       }
-      spacing: 5
+      columns: 4
+      spacing: 15
       Repeater {
         id: test
-        /*
-        model: ListModel {
-          ListElement {
-            name: "bill"
-            icon: "african-light.jpg"
-          }
-          ListElement {
-            name: "test"
-            icon: "3d-tech.jpg"
-          }
-        }
-        */
         model: testWallpapers
         Image {
           id: testImage
