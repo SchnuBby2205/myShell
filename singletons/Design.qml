@@ -10,9 +10,9 @@ Singleton {
 
   component Main: JsonObject {
     property string background: "black"
-    property string bordercolor: "grey"
+    property string bordercolor: "white"
     property int radius: 5
-    property real opacity: 0.75
+    property real opacity: 0.7
   }
 
   component Font: JsonObject {

@@ -8,6 +8,7 @@ Singleton {
 
   readonly property string wallpaperDir: "/home/schnubby/Bilder/Wallpapers/"
   property var arrWallpapers: []
+  property ListModel testWallpapers: {}
   property string currentWallpaper: ""
 
   function setRandomWallpaper(): void {
@@ -27,6 +28,7 @@ Singleton {
         for(var i in text.split("\n")) {
           var wallpaperName = text.split("\n")[i]
           wallpaperName != "" ? arrWallpapers.push(wallpaperName) : null
+          wallpaperName != "" ? testWallpapers.append({"name": "test", "icon":wallpaperName}) : null
         }
         var rnd = Math.floor(Math.random() * (arrWallpapers.length - 1))
         currentWallpaper = wallpaperDir + arrWallpapers[rnd]
@@ -54,6 +56,7 @@ Singleton {
       spacing: 5
       Repeater {
         id: test
+        /*
         model: ListModel {
           ListElement {
             name: "bill"
@@ -64,6 +67,8 @@ Singleton {
             icon: "3d-tech.jpg"
           }
         }
+        */
+        model: testWallpapers
         Image {
           id: testImage
           required property var modelData
