@@ -6,7 +6,7 @@ import QtQuick
 
 Singleton {
 
-  readonly property string wallpaperDir: "/home/schnubby/Pictures/Wallpapers/"
+  readonly property string wallpaperDir: "/home/schnubby/Bilder/Wallpapers/"
   property var arrWallpapers: []
   property string currentWallpaper: ""
 
@@ -46,27 +46,43 @@ Singleton {
     implicitWidth: 100
     visible: false
     color: "black"
-    Repeater {
-      id: test
-      model: ListModel {
-        ListElement {
-          name: "bill"
-          icon: "african-light.jpg"
+    Row {
+      anchors {
+        left: parent.left
+        verticalCenter: parent.verticalCenter
+      }
+      spacing: 5
+      Repeater {
+        id: test
+        model: ListModel {
+          ListElement {
+            name: "bill"
+            icon: "african-light.jpg"
+          }
+          ListElement {
+            name: "test"
+            icon: "3d-tech.jpg"
+          }
         }
-        ListElement {
-          name: "test"
-          icon: "3d-tech.jpg"
-        }
-      }/*
-      Image {
-        required property var modelData
-        required property int index
+        Image {
+          id: testImage
+          required property var modelData
+          required property int index
 
-        height: 200
-        width: 200
-        anchors.centerIn: parent
-        source: wallpaperDir + .icon
-      }*/
+          MouseArea {
+            id: choosePic
+            anchors.fill: parent
+            onClicked: {
+              currentWallpaper = wallpaperDir + modelData.icon
+              wallpapersSetProc.running = true
+            }
+          }
+  
+          height: 200
+          width: 200
+          source: wallpaperDir + modelData.icon
+        }
+      }
     }
   }
 }

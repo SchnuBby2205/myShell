@@ -21,8 +21,9 @@ PanelWindow {
   color: "transparent"
   Rectangle {
     id: topBarContent
+    opacity:0.75 
     color: "black"
-    border.color: "white"
+    border.color: "grey"
     radius: 5
     anchors {
       fill: parent

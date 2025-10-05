@@ -20,4 +20,7 @@ Row {
   TopBarDateTimeWidget {
     id: topBarDateTimeWidget
   }
+  TopBarPowerWidget {
+    id: topBarPowerWidget
+  }
 }
