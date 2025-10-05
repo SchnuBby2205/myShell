@@ -22,7 +22,7 @@ PanelWindow {
   color: "transparent"
   Rectangle {
     id: topBarContent
-    opacity:0.75 
+    opacity: Design.main.opacity
     color: Design.main.background
     border.color: Design.main.bordercolor
     radius: Design.main.radius

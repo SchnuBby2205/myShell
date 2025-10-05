@@ -28,7 +28,7 @@ Rectangle {
     anchor.window: topBar 
     color: "transparent"
 
-    anchor.rect.x: parentWindow.width - (width / 2) - 20 
+    anchor.rect.x: parentWindow.width 
     anchor.rect.y: parentWindow.height
 
     width: 200  
@@ -38,6 +38,7 @@ Rectangle {
       color: Design.main.background
       border.color: Design.main.bordercolor
       radius: Design.main.radius
+      opacity: Design.main.opacity 
       Column {
         anchors {
           topMargin: 15 
@@ -50,12 +51,12 @@ Rectangle {
           id: powerRepeater
           model: ListModel {
             ListElement {
-              name: "reboot"
+              name: "REBOOT"
               command: "reboot"
             }
             ListElement {
-              name: "shutdown"
-              command: "reboot"
+              name: "SHUTDOWN"
+              command: "poweroff" 
             }
           }
           Rectangle {
@@ -63,6 +64,7 @@ Rectangle {
             color: Design.main.background
             border.color: Design.main.bordercolor
             radius: Design.main.radius
+            opacity: Design.main.opacity 
             implicitHeight: 30
             implicitWidth: 180 
             anchors.horizontalCenter: parent.horizontalCenter
@@ -71,12 +73,12 @@ Rectangle {
               anchors.fill: parent
               acceptedButtons: Qt.LeftButton | Qt.RightButton
               onClicked: function() {
-                //restartProc.running = true
-                console.log(modelData.command)
+                if(modelData.command == "reboot") restartProc.running = true
               }
             }
             Text {
-              text: "TEST"
+              anchors.centerIn: parent
+              text: modelData.name 
               color: Design.font.color 
             }
           } 
@@ -86,7 +88,7 @@ Rectangle {
   }
   Process {
     id: shutdownProc
-    command: ["systemctl", "poweroff"]
+    command: ["systemctl", modelData.command]
   }
   Process {
     id: restartProc

@@ -12,6 +12,7 @@ Singleton {
     property string background: "black"
     property string bordercolor: "grey"
     property int radius: 5
+    property real opacity: 0.75
   }
 
   component Font: JsonObject {
