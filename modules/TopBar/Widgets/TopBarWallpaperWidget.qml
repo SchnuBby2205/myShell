@@ -24,7 +24,7 @@ Rectangle {
   }
   Text {
     id: wallpaperIcon 
-    color: "white"
+    color: Design.font.color 
     text: "󱍤"
   }
   Process {

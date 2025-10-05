@@ -5,9 +5,8 @@ import "../../../singletons/"
 
 Text {
   id: activeWindow
-  color: "white"
+  color: Design.font.color 
   anchors.centerIn: parent
   text: Hypr.activeWindow ? "[ " + Hypr.activeWindow.title + " ]" : ""
-  font.family: Fonts.family.standard
-  font.bold: Fonts.design.standard
+  font.family: Design.font.standard
 }

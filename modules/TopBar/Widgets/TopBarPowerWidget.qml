@@ -19,54 +19,70 @@ Rectangle {
   }
   Text {
     id: powerIcon 
-    color: "white"
+    color: Design.font.color
     text: "󱍤"
   }
   PopupWindow {
     id: popupPowerMenu
     visible: false
     anchor.window: topBar 
-    color: "white"
+    color: "transparent"
 
     anchor.rect.x: parentWindow.width - (width / 2) - 20 
     anchor.rect.y: parentWindow.height
 
-    width: 100  
-    height: 50
-    Column {
-      anchors {
-        left: parent.left
-        verticalCenter: parent.verticalCenter
-      }
-      spacing: 5
-      Rectangle {
-        color: "black"
-        implicitHeight: 15 
-        implicitWidth: 15 
-        MouseArea {
-          id: mouseOne
-          anchors.fill: parent
-          acceptedButtons: Qt.LeftButton | Qt.RightButton
-          onClicked: function(mouse) {
-            restartProc.running = true
-          }
+    width: 200  
+    height: 100 
+    Rectangle {
+      anchors.fill: parent
+      color: Design.main.background
+      border.color: Design.main.bordercolor
+      radius: Design.main.radius
+      Column {
+        anchors {
+          topMargin: 15 
+          left: parent.left
+          fill: parent
+          //verticalCenter: parent.verticalCenter
         }
-      }
-      Rectangle {
-        color: "black"
-        implicitHeight: 15 
-        implicitWidth: 15 
-        MouseArea {
-          id: mouseTwo
-          anchors.fill: parent
-          acceptedButtons: Qt.LeftButton | Qt.RightButton
-          onClicked: function(mouse) {
-            //Wallpaper.setRandomWallpaper()
-            shutdownProc.running = true
+        spacing: 10 
+        Repeater {
+          id: powerRepeater
+          model: ListModel {
+            ListElement {
+              name: "reboot"
+              command: "reboot"
+            }
+            ListElement {
+              name: "shutdown"
+              command: "reboot"
+            }
           }
+          Rectangle {
+            required property var modelData
+            color: Design.main.background
+            border.color: Design.main.bordercolor
+            radius: Design.main.radius
+            implicitHeight: 30
+            implicitWidth: 180 
+            anchors.horizontalCenter: parent.horizontalCenter
+            MouseArea {
+              id: mouseOne
+              anchors.fill: parent
+              acceptedButtons: Qt.LeftButton | Qt.RightButton
+              onClicked: function() {
+                //restartProc.running = true
+                console.log(modelData.command)
+              }
+            }
+            Text {
+              text: "TEST"
+              color: Design.font.color 
+            }
+          } 
         }
-      }
-    } 
+      } 
+    }
   }
   Process {
     id: shutdownProc

@@ -5,8 +5,7 @@ import "../../../singletons/"
 
 Text {
   id: datetime
-  color: "white"
+  color: Design.font.color 
   text: Qt.formatDateTime(DateTime.datetime, "hh:mm")
-  font.family: Fonts.family.standard
-  font.bold: Fonts.design.standard
+  font.family: Design.font.standard
 }

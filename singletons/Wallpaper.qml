@@ -45,7 +45,7 @@ Singleton {
     implicitHeight: 100
     implicitWidth: 100
     visible: false
-    color: "black"
+    color: Design.main.background 
     Row {
       anchors {
         left: parent.left
