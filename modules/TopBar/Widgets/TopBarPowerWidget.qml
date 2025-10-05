@@ -16,11 +16,17 @@ Rectangle {
       //Wallpaper.setRandomWallpaper()
       popupPowerMenu.visible = !popupPowerMenu.visible 
     }
-  }
+  }/*
   Text {
     id: powerIcon 
     color: Design.font.color
     text: "󱍤"
+  }
+  */
+  Image {
+    height: 20 
+    width: 20
+    source: "../../../assets/powerMenu.png"
   }
   PopupWindow {
     id: popupPowerMenu
@@ -51,12 +57,12 @@ Rectangle {
           id: powerRepeater
           model: ListModel {
             ListElement {
-              name: "REBOOT"
-              command: "reboot"
+              name: "reboot"
+              icon: "../../../assets/reboot.png"
             }
             ListElement {
-              name: "SHUTDOWN"
-              command: "poweroff" 
+              name: "shutdown"
+              icon: "../../../assets/power.png"
             }
           }
           Rectangle {
@@ -73,13 +79,14 @@ Rectangle {
               anchors.fill: parent
               acceptedButtons: Qt.LeftButton | Qt.RightButton
               onClicked: function() {
-                if(modelData.command == "reboot") restartProc.running = true
+                modelData.command == "reboot" ? restartProc.running = true : shutdownProc.running = true
               }
             }
-            Text {
+            Image {
+              height: 20
+              width: 20
+              source: modelData.icon
               anchors.centerIn: parent
-              text: modelData.name 
-              color: Design.font.color 
             }
           } 
         }
@@ -88,7 +95,7 @@ Rectangle {
   }
   Process {
     id: shutdownProc
-    command: ["systemctl", modelData.command]
+    command: ["systemctl", "poweroff"]
   }
   Process {
     id: restartProc
