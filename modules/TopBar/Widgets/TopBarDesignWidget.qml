@@ -10,28 +10,23 @@ Rectangle {
   implicitHeight: 20
   implicitWidth: 20
   MouseArea {
-    id: wallpaperControl
+    id: designControl
     anchors.fill: parent
     acceptedButtons: Qt.LeftButton | Qt.RightButton
     onClicked: function(mouse) {
       if(mouse.button == Qt.LeftButton) {
         //Wallpaper.setRandomWallpaper()
-        //Config.setDesign("light")
-        console.log("left")
+        Config.setDesign("light")
       } 
       if(mouse.button == Qt.RightButton) {
         //Wallpaper.togglePicker()
-        //Config.setDesign("dark")
-        console.log("right")
+        Config.setDesign("dark")
       }
     }
   }
   Text {
-    id: wallpaperIcon 
+    id: designIcon 
     color: Config.designs[Config.loadedDesign].font.color 
-    text: "󱍤"
+    text: "X"
   }
-  //Process {
-    //command: ["systemctl poweroff"]
-  //}
 }

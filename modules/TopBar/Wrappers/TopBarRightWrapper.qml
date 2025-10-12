@@ -11,6 +11,9 @@ Row {
     verticalCenter: parent.verticalCenter
     rightMargin: 5 
   }
+  TopBarDesignWidget {
+    id: topBarDesignWidget
+  }
   TopBarWallpaperWidget {
     id: topBarWallpaperWidget
   }

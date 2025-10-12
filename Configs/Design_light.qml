@@ -1,9 +1,9 @@
 pragma Singleton
 
-import Quickshell
+//import Quickshell
 import Quickshell.Io
 
-Singleton {
+JsonObject {
   
   readonly property Main main: Main {}
   readonly property Font font: Font {}
