@@ -14,7 +14,8 @@ Rectangle {
     acceptedButtons: Qt.LeftButton | Qt.RightButton
     onClicked: function(mouse) {
       //Wallpaper.setRandomWallpaper()
-      popupPowerMenu.visible = !popupPowerMenu.visible 
+      popupPowerMenu.visible = !popupPowerMenu.visible
+      hidePowerTimer.start()
     }
   }/*
   Text {
@@ -77,9 +78,16 @@ Rectangle {
             MouseArea {
               id: mouseOne
               anchors.fill: parent
+              hoverEnabled: true
               acceptedButtons: Qt.LeftButton | Qt.RightButton
               onClicked: function() {
                 modelData.command == "reboot" ? restartProc.running = true : shutdownProc.running = true
+              }
+              onEntered: {
+                hidePowerTimer.stop()
+              }
+              onExited: {
+                hidePowerTimer.start()
               }
             }
             Image {
@@ -100,5 +108,12 @@ Rectangle {
   Process {
     id: restartProc
     command: ["systemctl", "reboot"]
+  }
+  Timer {
+    id: hidePowerTimer
+    interval: 1000
+    onTriggered: {
+      popupPowerMenu.visible = false
+    }
   }
 }
