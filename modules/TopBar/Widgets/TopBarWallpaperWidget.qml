@@ -15,20 +15,21 @@ Rectangle {
     acceptedButtons: Qt.LeftButton | Qt.RightButton
     onClicked: function(mouse) {
       if(mouse.button == Qt.LeftButton) {
-        Wallpaper.setRandomWallpaper()
+        //Wallpaper.setRandomWallpaper()
+        Config.setDesign("light")
       } 
       if(mouse.button == Qt.RightButton) {
-        Wallpaper.togglePicker()
-
+        //Wallpaper.togglePicker()
+        Config.setDesign("dark")
       }
     }
   }
   Text {
     id: wallpaperIcon 
-    color: Design.font.color 
+    color: Config.designs[Config.loadedDesign].font.color 
     text: "󱍤"
   }
-  Process {
-    command: ["systemctl poweroff"]
-  }
+  //Process {
+    //command: ["systemctl poweroff"]
+  //}
 }

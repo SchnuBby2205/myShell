@@ -2,11 +2,12 @@ import Quickshell
 import QtQuick
 
 import "../../../singletons/"
+import "../../../Configs/"
 
 Text {
   id: activeWindow
-  color: Design.font.color 
+  color: Config.designs[Config.loadedDesign].font.color 
   anchors.centerIn: parent
   text: Hypr.activeWindow ? "[ " + Hypr.activeWindow.title + " ]" : ""
-  font.family: Design.font.standard
+  font.family: Config.designs[Config.loadedDesign].font.standard
 }

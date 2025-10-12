@@ -46,7 +46,7 @@ Singleton {
     implicitHeight: 100
     implicitWidth: 100
     visible: false
-    color: Design.main.background 
+    color: Config.designs[Config.loadedDesign].main.background 
     Grid {
       anchors {
         verticalCenter: parent.verticalCenter
@@ -61,7 +61,6 @@ Singleton {
           id: testImage
           required property var modelData
           required property int index
-
           MouseArea {
             id: choosePic
             anchors.fill: parent
@@ -69,8 +68,7 @@ Singleton {
               currentWallpaper = wallpaperDir + modelData.icon
               wallpapersSetProc.running = true
             }
-          }
-  
+          }  
           height: 200
           width: 200
           source: wallpaperDir + modelData.icon

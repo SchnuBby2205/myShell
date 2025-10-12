@@ -4,6 +4,7 @@ import QtQuick
 import "./Widgets/" 
 import "./Wrappers/"
 import "../../singletons/"
+import "../../Configs/"
 
 PanelWindow {
   id: topBar
@@ -22,10 +23,10 @@ PanelWindow {
   color: "transparent"
   Rectangle {
     id: topBarContent
-    opacity: Design.main.opacity
-    color: Design.main.background
-    border.color: Design.main.bordercolor
-    radius: Design.main.radius
+    opacity: Config.designs[Config.loadedDesign].main.opacity
+    color: Config.designs[Config.loadedDesign].main.background
+    border.color: Config.designs[Config.loadedDesign].main.bordercolor
+    radius: Config.designs[Config.loadedDesign].main.radius
     anchors {
       fill: parent
       topMargin: 2

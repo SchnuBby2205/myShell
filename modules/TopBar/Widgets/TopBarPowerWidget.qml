@@ -19,14 +19,14 @@ Rectangle {
   }/*
   Text {
     id: powerIcon 
-    color: Design.font.color
+    color: Config.designs[Config.loadedDesign].font.color
     text: "󱍤"
   }
   */
   Image {
     height: 20 
     width: 20
-    source: "../../../assets/powerMenu.png"
+    source: "../../../Assets/powerMenu.png"
   }
   PopupWindow {
     id: popupPowerMenu
@@ -41,10 +41,10 @@ Rectangle {
     height: 100 
     Rectangle {
       anchors.fill: parent
-      color: Design.main.background
-      border.color: Design.main.bordercolor
-      radius: Design.main.radius
-      opacity: Design.main.opacity 
+      color: Config.designs[Config.loadedDesign].main.background
+      border.color: Config.designs[Config.loadedDesign].main.bordercolor
+      radius: Config.designs[Config.loadedDesign].main.radius
+      opacity: Config.designs[Config.loadedDesign].main.opacity 
       Column {
         anchors {
           topMargin: 15 
@@ -58,19 +58,19 @@ Rectangle {
           model: ListModel {
             ListElement {
               name: "reboot"
-              icon: "../../../assets/reboot.png"
+              icon: "../../../Assets/reboot.png"
             }
             ListElement {
               name: "shutdown"
-              icon: "../../../assets/power.png"
+              icon: "../../../Assets/power.png"
             }
           }
           Rectangle {
             required property var modelData
-            color: Design.main.background
-            border.color: Design.main.bordercolor
-            radius: Design.main.radius
-            opacity: Design.main.opacity 
+            color: Config.designs[Config.loadedDesign].main.background
+            border.color: Config.designs[Config.loadedDesign].main.bordercolor
+            radius: Config.designs[Config.loadedDesign].main.radius
+            opacity: Config.designs[Config.loadedDesign].main.opacity 
             implicitHeight: 30
             implicitWidth: 180 
             anchors.horizontalCenter: parent.horizontalCenter
