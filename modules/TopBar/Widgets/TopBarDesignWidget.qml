@@ -41,7 +41,7 @@ Rectangle {
     anchor.rect.y: parentWindow.height
 
     width: 200  
-    height: 100
+    height: 400
     Rectangle {
       anchors.fill: parent
       color: Config.designs[Config.loadedDesign].main.background

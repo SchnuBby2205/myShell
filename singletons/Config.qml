@@ -15,7 +15,8 @@ Singleton {
 
     property var designs: ({
         "Dark Theme": Design_dark,
-        "Light Theme": Design_light
+        "Light Theme": Design_light,
+        "Orange Theme": Design_orange
     })
 
     function setDesign(design: string): void {
