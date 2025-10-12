@@ -3,23 +3,30 @@ pragma Singleton
 //import qs.utils
 import Quickshell
 import Quickshell.Io
+import QtQuick
 
 import "../Configs/"
 
 Singleton {
     id: root
 
-    property string loadedDesign: "dark"
+    property string loadedDesign: "Dark Theme"
+    property ListModel listDesigns: ListModel{}
 
     property var designs: ({
-        "dark": Design_dark,
-        "light": Design_light
+        "Dark Theme": Design_dark,
+        "Light Theme": Design_light
     })
 
     function setDesign(design: string): void {
         loadedDesign = design
     }
 
+    Component.onCompleted: {
+        for(var d in designs) {
+            root.listDesigns.append({name: d, suffix: d})
+        }
+    }
 /*
     function getDesign (): JsonObject {
         console.log(Config.designs[Config.loadedDesign].main.background)

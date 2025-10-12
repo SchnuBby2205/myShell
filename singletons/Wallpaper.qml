@@ -9,7 +9,7 @@ Singleton {
 
   readonly property string wallpaperDir: "/home/schnubby/Bilder/Wallpapers/"
   property var arrWallpapers: []
-  property ListModel testWallpapers: ListModel{} 
+  property ListModel listWallpapers: ListModel{} 
   property string currentWallpaper: ""
   property string currentWallpaperFileName: ""
 
@@ -34,7 +34,7 @@ Singleton {
         for(var i in text.split("\n")) {
           var wallpaperName = text.split("\n")[i]
           wallpaperName != "" ? arrWallpapers.push(wallpaperName) : null
-          wallpaperName != "" ? root.testWallpapers.append({name: "test", icon:wallpaperName}) : null
+          wallpaperName != "" ? root.listWallpapers.append({name: "test", icon:wallpaperName}) : null
         }
       }
     }
@@ -58,7 +58,7 @@ Singleton {
       spacing: 15
       Repeater {
         id: test
-        model: testWallpapers
+        model: listWallpapers
         /*
         Image {
           id: testImage

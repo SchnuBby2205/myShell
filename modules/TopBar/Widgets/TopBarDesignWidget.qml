@@ -80,16 +80,7 @@ Rectangle {
 
         Repeater {
           id: designRepeater
-          model: ListModel {
-            ListElement {
-              name: "dark"
-              icon: "dark"
-            }
-            ListElement {
-              name: "light"
-              icon: "light"
-            }
-          }
+          model: Config.listDesigns
           Rectangle {
             required property var modelData
             color: Config.designs[Config.loadedDesign].main.background
@@ -108,13 +99,13 @@ Rectangle {
                   //Config.setDesign("dark")
                 //}
                 if(mouse.button == Qt.LeftButton) {
-                  Config.setDesign(modelData.icon)
+                  Config.setDesign(modelData.name)
                 }                
               }
             }
             Text {
               anchors.centerIn: parent
-              text: modelData.icon
+              text: modelData.name
               color: Config.designs[Config.loadedDesign].font.color
             }
           }        
