@@ -23,10 +23,10 @@ PanelWindow {
   color: "transparent"
   Rectangle {
     id: topBarContent
-    opacity: Config.designs[Config.loadedDesign].main.opacity
-    color: Config.designs[Config.loadedDesign].main.background
-    border.color: Config.designs[Config.loadedDesign].main.bordercolor
-    radius: Config.designs[Config.loadedDesign].main.radius
+    opacity: Config.loadedDesign.main.opacity
+    color: Config.loadedDesign.main.background
+    border.color: Config.loadedDesign.main.bordercolor
+    radius: Config.loadedDesign.main.radius
     anchors {
       fill: parent
       topMargin: 2

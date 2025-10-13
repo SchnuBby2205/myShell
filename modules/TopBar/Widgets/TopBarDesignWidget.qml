@@ -28,7 +28,7 @@ Rectangle {
   }
   Text {
     id: designIcon 
-    color: Config.designs[Config.loadedDesign].font.color 
+    color: Config.loadedDesign.font.color 
     text: "X"
   }
   PopupWindow {
@@ -40,14 +40,14 @@ Rectangle {
     anchor.rect.x: parentWindow.width 
     anchor.rect.y: parentWindow.height
 
-    width: 200  
-    height: 400
+    implicitWidth: 200  
+    implicitHeight: 400
     Rectangle {
       anchors.fill: parent
-      color: Config.designs[Config.loadedDesign].main.background
-      border.color: Config.designs[Config.loadedDesign].main.bordercolor
-      radius: Config.designs[Config.loadedDesign].main.radius
-      opacity: Config.designs[Config.loadedDesign].main.opacity 
+      color: Config.loadedDesign.main.background
+      border.color: Config.loadedDesign.main.bordercolor
+      radius: Config.loadedDesign.main.radius
+      opacity: Config.loadedDesign.main.opacity 
 
       MouseArea {              
         id: mouseDesignOne
@@ -83,10 +83,10 @@ Rectangle {
           model: Config.listDesigns
           Rectangle {
             required property var modelData
-            color: Config.designs[Config.loadedDesign].main.background
-            border.color: Config.designs[Config.loadedDesign].main.bordercolor
-            radius: Config.designs[Config.loadedDesign].main.radius
-            opacity: Config.designs[Config.loadedDesign].main.opacity 
+            color: Config.loadedDesign.main.background
+            border.color: Config.loadedDesign.main.bordercolor
+            radius: Config.loadedDesign.main.radius
+            opacity: Config.loadedDesign.main.opacity 
             implicitHeight: 30
             implicitWidth: 180 
             anchors.horizontalCenter: parent.horizontalCenter
@@ -99,14 +99,14 @@ Rectangle {
                   //Config.setDesign("dark")
                 //}
                 if(mouse.button == Qt.LeftButton) {
-                  Config.setDesign(modelData.name)
+                  Config.setDesign(modelData.id)
                 }                
               }
             }
             Text {
               anchors.centerIn: parent
               text: modelData.name
-              color: Config.designs[Config.loadedDesign].font.color
+              color: Config.loadedDesign.font.color
             }
           }        
         }

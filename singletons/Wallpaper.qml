@@ -48,7 +48,7 @@ Singleton {
     implicitHeight: 100
     implicitWidth: 100
     visible: false
-    color: Config.designs[Config.loadedDesign].main.background 
+    color: "transparent" 
     Grid {
       anchors {
         verticalCenter: parent.verticalCenter
@@ -59,30 +59,11 @@ Singleton {
       Repeater {
         id: test
         model: listWallpapers
-        /*
-        Image {
-          id: testImage
-          required property var modelData
-          required property int index
-          MouseArea {
-            id: choosePic
-            anchors.fill: parent
-            onClicked: {
-              currentWallpaperFileName = modelData.icon
-              currentWallpaper = wallpaperDir + modelData.icon
-              wallpapersSetProc.running = true
-            }
-          }  
-          height: 200
-          width: 200
-          source: wallpaperDir + modelData.icon
-        }
-        */
         Text {
           required property var modelData
           required property int index
           text: modelData.icon
-          color: Config.designs[Config.loadedDesign].font.color
+          color: Config.loadedDesign.font.color
 
           MouseArea {
             id: choosePic

@@ -1,0 +1,26 @@
+[
+    {"id": "dark", "name":"Dark Theme",
+        "main":{
+            "background": "black",
+            "bordercolor": "white",
+            "radius": 5,
+            "opacity": 0.7
+        },
+        "font":{
+            "color": "white",
+            "standard": "CaskaydiaCove NF"
+        }
+    },
+    {"id": "light", "name":"Light Theme",
+        "main":{
+            "background": "white",
+            "bordercolor": "black",
+            "radius": 5,
+            "opacity": 0.7
+        },
+        "font":{
+            "color": "black",
+            "standard": "CaskaydiaCove NF"
+        }
+    }
+]

@@ -28,7 +28,7 @@ Rectangle {
   }
   Text {
     id: wallpaperIcon 
-    color: Config.designs[Config.loadedDesign].font.color 
+    color: Config.loadedDesign.font.color 
     text: "󱍤"
   }
   //Process {
@@ -43,14 +43,14 @@ Rectangle {
     anchor.rect.x: parentWindow.width 
     anchor.rect.y: parentWindow.height
 
-    width: 200  
-    height: 30
+    implicitWidth: 200  
+    implicitHeight: 30
     Rectangle {
       anchors.fill: parent
-      color: Config.designs[Config.loadedDesign].main.background
-      border.color: Config.designs[Config.loadedDesign].main.bordercolor
-      radius: Config.designs[Config.loadedDesign].main.radius
-      opacity: Config.designs[Config.loadedDesign].main.opacity 
+      color: Config.loadedDesign.main.background
+      border.color: Config.loadedDesign.main.bordercolor
+      radius: Config.loadedDesign.main.radius
+      opacity: Config.loadedDesign.main.opacity 
 
       MouseArea {              
         id: mouseOne
@@ -73,50 +73,9 @@ Rectangle {
       Text {
         anchors.centerIn: parent
         text: Wallpaper.currentWallpaperFileName 
-        color: Config.designs[Config.loadedDesign].font.color
+        color: Config.loadedDesign.font.color
       }
     }
-/*
-      Column {
-        anchors {
-          topMargin: 15 
-          left: parent.left
-          fill: parent
-          //verticalCenter: parent.verticalCenter
-        }
-        spacing: 10 
-        Repeater {
-          id: powerRepeater
-          model: ListModel {
-            ListElement {
-              name: "reboot"
-              icon: "../../../Assets/reboot.png"
-            }
-            ListElement {
-              name: "shutdown"
-              icon: "../../../Assets/power.png"
-            }
-          }
-          Rectangle {
-            required property var modelData
-            color: Config.designs[Config.loadedDesign].main.background
-            border.color: Config.designs[Config.loadedDesign].main.bordercolor
-            radius: Config.designs[Config.loadedDesign].main.radius
-            opacity: Config.designs[Config.loadedDesign].main.opacity 
-            implicitHeight: 30
-            implicitWidth: 180 
-            anchors.horizontalCenter: parent.horizontalCenter
-            Image {
-              height: 20
-              width: 20
-              source: modelData.icon
-              anchors.centerIn: parent
-            }
-          } 
-        }
-      }
-            */ 
-
   }
   Timer {
     id: hideTimer

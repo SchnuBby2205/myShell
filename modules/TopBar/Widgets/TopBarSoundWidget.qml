@@ -21,7 +21,7 @@ Rectangle {
   }
   Text {
     id: activeSink
-    color: Config.designs[Config.loadedDesign].font.color 
+    color: Config.loadedDesign.font.color 
     text: Sound.getVolumeIcon()
   }
 }
