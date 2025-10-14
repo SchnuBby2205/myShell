@@ -11,6 +11,8 @@ Singleton {
     property var loadedTheme: {}
     property ListModel listThemes: ListModel{}
     property bool themesLoaded: false
+    
+    //property string currentWallpaper: ""
 
     function setTheme(design: string): void {
         for (var i = 0; i < listThemes.count; i++) {
@@ -20,23 +22,16 @@ Singleton {
             }
         }
     }
-    function readJson(filePath: string): void {
-        var xhr = new XMLHttpRequest()
-        xhr.open("GET", Qt.resolvedUrl(filePath), false)
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-                var data = JSON.parse(xhr.responseText)
-                for (var i = 0; i < data.length; ++i) {
-                    listThemes.append(data[i])
-                }
-                setTheme("dark");
-                themesLoaded = true
-            }
-        }
-        xhr.send()
-    }
     Component.onCompleted: {
-        readJson("../Configs/themes.json");
-        //readJson("../Configs/config.json")
+        JsonReader.parseFile("../Configs/themes.json", (data) => {
+            for (var i = 0; i < data.length; ++i) {
+                listThemes.append(data[i])
+            }        
+            themesLoaded = true
+        });
+        JsonReader.parseFile("../Configs/config.json", (data) => {
+            Wallpaper.currentWallpaperFileName = data[0].app.currentWallpaper;
+            setTheme(data[0].app.currentTheme);
+        });
     } 
 }
