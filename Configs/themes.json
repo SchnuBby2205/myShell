@@ -2,24 +2,28 @@
     {"id": "dark", "name":"Dark Theme",
         "main":{
             "background": "black",
+            "backgroundMarked": "red",
             "bordercolor": "white",
             "radius": 5,
             "opacity": 0.7
         },
         "font":{
             "color": "white",
+            "colorMarked": "red",
             "standard": "CaskaydiaCove NF"
         }
     },
     {"id": "light", "name":"Light Theme",
         "main":{
             "background": "white",
+            "backgroundMarked": "blue",
             "bordercolor": "black",
             "radius": 5,
             "opacity": 0.7
         },
         "font":{
             "color": "black",
+            "colorMarked": "blue",
             "standard": "CaskaydiaCove NF"
         }
     }

@@ -1,36 +1,42 @@
 import Quickshell
-import Quickshell.Io
 import QtQuick
 
 import "../../../singletons/"
 
 Rectangle {
-  color: "transparent"
+  id: rootTheme
+  
+  opacity: Config.loadedTheme.main.opacity
+  color: Config.loadedTheme.main.background
+  border.color: Config.loadedTheme.main.bordercolor
+  radius: Config.loadedTheme.main.radius
+
   implicitHeight: 20
-  implicitWidth: 20
-  MouseArea {
-    id: designControl
-    anchors.fill: parent
-    acceptedButtons: Qt.LeftButton | Qt.RightButton
-    hoverEnabled: true
-    onClicked: function(mouse) {
-      if(mouse.button == Qt.LeftButton) {
-        //Wallpaper.setRandomWallpaper()
-      } 
-      if(mouse.button == Qt.RightButton) {
-        //Wallpaper.togglePickeyr()
-      }
-    }
-    onEntered: function() {
-      popupThemeMenu.visible = true
-      hideThemeTimer.start()
-    }
-  }
+  implicitWidth: 20  
+
+  //property alias popupThemeMenu: popupThemeMenu
+  //property alias rootTheme: rootTheme
+
   Text {
-    id: designIcon 
-    color: Config.loadedTheme.font.color 
-    text: "X"
+    id: rootThemeText
+    anchors.centerIn: parent
+    text: "T"
+    color: Config.loadedTheme.font.color
   }
+
+  MouseArea {
+    id: themeControl
+    anchors.fill: parent
+    hoverEnabled: true
+    onEntered: function() {
+      PopupHandler.show(popupThemeMenu, rootTheme)
+      hideThemePopup.stop()
+    }
+    onExited: function() {
+      hideThemePopup.start()
+    }
+  }
+
   PopupWindow {
     id: popupThemeMenu
     visible: false
@@ -41,84 +47,80 @@ Rectangle {
     anchor.rect.y: parentWindow.height
 
     implicitWidth: 200  
-    implicitHeight: 400
+    implicitHeight: Config.listThemes.count * 50
+
     Rectangle {
       anchors.fill: parent
+
+      opacity: Config.loadedTheme.main.opacity
       color: Config.loadedTheme.main.background
       border.color: Config.loadedTheme.main.bordercolor
       radius: Config.loadedTheme.main.radius
-      opacity: Config.loadedTheme.main.opacity 
-
-      MouseArea {              
-        id: mouseThemeOne
-        hoverEnabled: true
-        anchors.fill: parent
-        acceptedButtons: Qt.LeftButton | Qt.RightButton
-        onClicked: function(mouse) {
-          if(mouse.button == Qt.RightButton) {
-            //Config.setTheme("dark")
-          }
-          if(mouse.button == Qt.LeftButton) {
-            //Config.setTheme("light")
-          }
-        }
-        onEntered: {
-          hideThemeTimer.stop()
-        }
-        onExited: {
-          hideThemeTimer.start()
-        }
-      }
+      
       Column {
         anchors {
           topMargin: 15 
           left: parent.left
           fill: parent
-          //verticalCenter: parent.verticalCenter
         }
         spacing: 10 
 
         Repeater {
-          id: designRepeater
-          model: Config.listThemes
+          id: themeControlEntriesElements
+          model: Config.listThemes          
           Rectangle {
+            id: themeElement
             required property var modelData
+
+            opacity: Config.loadedTheme.main.opacity
             color: Config.loadedTheme.main.background
             border.color: Config.loadedTheme.main.bordercolor
             radius: Config.loadedTheme.main.radius
-            opacity: Config.loadedTheme.main.opacity 
+
             implicitHeight: 30
             implicitWidth: 180 
             anchors.horizontalCenter: parent.horizontalCenter
+
             MouseArea {
-              id: mouseOne
               anchors.fill: parent
-              acceptedButtons: Qt.LeftButton | Qt.RightButton
-              onClicked: function(mouse) {
-                //if(mouse.button == Qt.RightButton) {
-                  //Config.setTheme("dark")
-                //}
-                if(mouse.button == Qt.LeftButton) {
-                  Config.setTheme(modelData.id)
-                }                
+              hoverEnabled: true
+              onEntered: function() {
+                hideThemePopup.stop()
+                themeElement.color = Config.loadedTheme.main.backgroundMarked
+              }
+              onExited: function() {
+                hideThemePopup.start()
+                themeElement.color = Config.loadedTheme.main.background
+              }
+              acceptedButtons: Qt.LeftButton
+              onClicked: function() {
+                Config.setTheme(modelData.id)
+                for (var i = 0; i < themeControlEntriesElements.count; i++) {
+                  var item = themeControlEntriesElements.itemAt(i)
+                  item.color = Config.loadedTheme.main.background
+                }
+                rootTheme.color = Config.loadedTheme.main.backgroundMarked
               }
             }
+
             Text {
+              id: themeElementText
               anchors.centerIn: parent
               text: modelData.name
               color: Config.loadedTheme.font.color
             }
-          }        
+          }
         }
       }
     }
   }
+
   Timer {
-    id: hideThemeTimer
+    id: hideThemePopup
     interval: 1000
     onTriggered: {
       popupThemeMenu.visible = false
+      rootTheme.color = Config.loadedTheme.main.background
     }
   }
 }
-

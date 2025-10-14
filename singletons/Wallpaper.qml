@@ -11,22 +11,22 @@ Singleton {
   property var arrWallpapers: []
   property ListModel listWallpapers: ListModel{} 
   property string currentWallpaper: ""
-  property string currentWallpaperFileName: ""
-
+  
 
   function setRandomWallpaper(): void {
     var rnd = Math.floor(Math.random() * (arrWallpapers.length - 1))
-    currentWallpaperFileName = arrWallpapers[rnd]
+    Config.appSettings.currentWallpaper = arrWallpapers[rnd]
     currentWallpaper = wallpaperDir + arrWallpapers[rnd]
     wallpapersSetProc.running = true
   }
   function togglePicker(): void {
     wallpaperPicker.visible = !wallpaperPicker.visible
-    //console.log("test")
   }
+
+  property alias wallpapersReadProc: wallpapersReadProc
   Process {
     id: wallpapersReadProc
-    running: true
+    running: false
     command: ["ls", wallpaperDir]
     stdout: StdioCollector {
       onStreamFinished: {
@@ -52,7 +52,7 @@ Singleton {
     Grid {
       anchors {
         verticalCenter: parent.verticalCenter
-        horizontalCenter: parent.horizontalCenter
+        horizontalCenter: parent.hoarizontalCenter
       }
       columns: 4
       spacing: 15
@@ -64,17 +64,15 @@ Singleton {
           required property int index
           text: modelData.icon
           color: Config.loadedTheme.font.color
-
           MouseArea {
             id: choosePic
             anchors.fill: parent
             onClicked: {
-              currentWallpaperFileName = modelData.icon
+              Config.appSettings.currentWallpaper = modelData.icon
               currentWallpaper = wallpaperDir + modelData.icon
               wallpapersSetProc.running = true
             }
-          }  
-
+          }
         }  
       }
     }

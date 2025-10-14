@@ -4,16 +4,21 @@ pragma Singleton
 import Quickshell
 import Quickshell.Io
 import QtQuick
+import QtCore
 
 Singleton {
     id: root
-
     property var loadedTheme: {}
     property ListModel listThemes: ListModel{}
     property bool themesLoaded: false
-    
-    //property string currentWallpaper: ""
 
+    property alias appSettings: appSettings
+    
+    Settings {
+        id: appSettings        
+        property string currentThemeId: ""
+        property string currentWallpaper: ""
+    }
     function setTheme(design: string): void {
         for (var i = 0; i < listThemes.count; i++) {
             var _design = listThemes.get(i);
@@ -23,15 +28,22 @@ Singleton {
         }
     }
     Component.onCompleted: {
-        JsonReader.parseFile("../Configs/themes.json", (data) => {
+        Qt.application.organization = "myShell"
+        Qt.application.domain = "https://github.com/SchnuBby2205"
+        Qt.application.name = "myShell"
+
+        JsonHelper.parseFile("../Configs/themes.json", (data) => {
             for (var i = 0; i < data.length; ++i) {
                 listThemes.append(data[i])
             }        
             themesLoaded = true
         });
-        JsonReader.parseFile("../Configs/config.json", (data) => {
-            Wallpaper.currentWallpaperFileName = data[0].app.currentWallpaper;
-            setTheme(data[0].app.currentTheme);
-        });
+        appSettings.currentThemeId ? setTheme(appSettings.currentThemeId) : setTheme("dark")
     } 
+    Connections {
+        target: root
+        function onLoadedThemeChanged() {
+            appSettings.currentThemeId = loadedTheme.id
+        }
+    }
 }
