@@ -96,14 +96,8 @@ Rectangle {
                 for (var i = 0; i < themeControlEntriesElements.count; i++) {
                   var item = themeControlEntriesElements.itemAt(i)
                   item.color = Config.loadedTheme.main.background
-                }
-                
+                }                
                 ColorHelper.reload()
-                
-                /*topBarWallpaperWidget.rootWallpaper.color = Config.loadedTheme.main.background  
-                rootTheme.color = Config.loadedTheme.main.background     
-                rootPower.color = Config.loadedTheme.main.background     */
-
                 popupThemeMenu.visible = false
               }
             }
