@@ -5,30 +5,36 @@ import QtQuick
 import "../../../singletons/"
 
 Rectangle {
-  color: "transparent"
+  id: rootPower
+  
+  opacity: Config.loadedTheme.main.opacity
+  color: Config.loadedTheme.main.background
+  border.color: Config.loadedTheme.main.bordercolor
+  radius: Config.loadedTheme.main.radius
+
   implicitHeight: 20
-  implicitWidth: 20
+  implicitWidth: 20  
+
+  Text {
+    id: rootPowerText
+    anchors.centerIn: parent
+    text: "P"
+    color: Config.loadedTheme.font.color
+  }
+
   MouseArea {
     id: powerControl
     anchors.fill: parent
-    acceptedButtons: Qt.LeftButton | Qt.RightButton
-    onClicked: function(mouse) {
-      //Wallpaper.setRandomWallpaper()
-      popupPowerMenu.visible = !popupPowerMenu.visible
-      hidePowerTimer.start()
+    hoverEnabled: true
+    onEntered: function() {
+      PopupHandler.show(popupPowerMenu, rootPower)
+      hidePowerPopup.stop()
     }
-  }/*
-  Text {
-    id: powerIcon 
-    color: Config.loadedTheme.font.color
-    text: "󱍤"
+    onExited: function() {
+      hidePowerPopup.start()
+    }
   }
-  */
-  Image {
-    height: 20 
-    width: 20
-    source: "../../../Assets/powerMenu.png"
-  }
+
   PopupWindow {
     id: popupPowerMenu
     visible: false
@@ -39,81 +45,95 @@ Rectangle {
     anchor.rect.y: parentWindow.height
 
     implicitWidth: 200  
-    implicitHeight: 100 
+    implicitHeight: 100
+
     Rectangle {
       anchors.fill: parent
+
+      opacity: Config.loadedTheme.main.opacity
       color: Config.loadedTheme.main.background
       border.color: Config.loadedTheme.main.bordercolor
       radius: Config.loadedTheme.main.radius
-      opacity: Config.loadedTheme.main.opacity 
+      
       Column {
         anchors {
           topMargin: 15 
           left: parent.left
           fill: parent
-          //verticalCenter: parent.verticalCenter
         }
         spacing: 10 
+
         Repeater {
-          id: powerRepeater
+          id: powerControlEntriesElements
           model: ListModel {
             ListElement {
-              name: "reboot"
+              name: "Reboot"
               icon: "../../../Assets/reboot.png"
             }
             ListElement {
-              name: "shutdown"
+              name: "Shutdown"
               icon: "../../../Assets/power.png"
             }
           }
           Rectangle {
+            id: powerElement
             required property var modelData
+
+            opacity: Config.loadedTheme.main.opacity
             color: Config.loadedTheme.main.background
             border.color: Config.loadedTheme.main.bordercolor
             radius: Config.loadedTheme.main.radius
-            opacity: Config.loadedTheme.main.opacity 
+
             implicitHeight: 30
             implicitWidth: 180 
             anchors.horizontalCenter: parent.horizontalCenter
+
             MouseArea {
-              id: mouseOne
               anchors.fill: parent
               hoverEnabled: true
-              acceptedButtons: Qt.LeftButton | Qt.RightButton
+              onEntered: function() {
+                hidePowerPopup.stop()
+                powerElement.color = Config.loadedTheme.main.backgroundMarked
+              }
+              onExited: function() {
+                hidePowerPopup.start()
+                powerElement.color = Config.loadedTheme.main.background
+              }
+              acceptedButtons: Qt.LeftButton
               onClicked: function() {
                 modelData.command == "reboot" ? restartProc.running = true : shutdownProc.running = true
               }
-              onEntered: {
-                hidePowerTimer.stop()
-              }
-              onExited: {
-                hidePowerTimer.start()
-              }
             }
-            Image {
-              height: 20
-              width: 20
-              source: modelData.icon
+
+            Text {
+              id: themeElementText
               anchors.centerIn: parent
+              text: modelData.name
+              color: Config.loadedTheme.font.color
             }
-          } 
+          }
         }
-      } 
+      }
     }
   }
+
   Process {
     id: shutdownProc
     command: ["systemctl", "poweroff"]
   }
+
   Process {
     id: restartProc
     command: ["systemctl", "reboot"]
   }
+
   Timer {
-    id: hidePowerTimer
+    id: hidePowerPopup
     interval: 1000
     onTriggered: {
       popupPowerMenu.visible = false
+      rootPower.color = Config.loadedTheme.main.background
     }
   }
+
 }

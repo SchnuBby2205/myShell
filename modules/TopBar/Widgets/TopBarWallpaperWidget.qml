@@ -14,9 +14,6 @@ Rectangle {
   implicitHeight: 20
   implicitWidth: 20  
 
-  //property alias popupWallpaperMenu: popupWallpaperMenu
-  //property alias rootWallpaper: rootWallpaper
-
   Text {
     id: rootWallpaperText
     anchors.centerIn: parent

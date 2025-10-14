@@ -14,9 +14,6 @@ Rectangle {
   implicitHeight: 20
   implicitWidth: 20  
 
-  //property alias popupThemeMenu: popupThemeMenu
-  //property alias rootTheme: rootTheme
-
   Text {
     id: rootThemeText
     anchors.centerIn: parent
