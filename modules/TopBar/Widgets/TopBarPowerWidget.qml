@@ -15,6 +15,8 @@ Rectangle {
   implicitHeight: 20
   implicitWidth: 20  
 
+  property alias rootPower: rootPower
+
   Text {
     id: rootPowerText
     anchors.centerIn: parent
@@ -125,6 +127,10 @@ Rectangle {
   Process {
     id: restartProc
     command: ["systemctl", "reboot"]
+  }
+
+  Component.onCompleted: function() {
+    ColorHelper.addElement(rootPower)
   }
 
   Timer {

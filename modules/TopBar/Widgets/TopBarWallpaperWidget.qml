@@ -14,6 +14,8 @@ Rectangle {
   implicitHeight: 20
   implicitWidth: 20  
 
+  property alias rootWallpaper: rootWallpaper
+
   Text {
     id: rootWallpaperText
     anchors.centerIn: parent
@@ -91,6 +93,7 @@ Rectangle {
   
   Component.onCompleted: {
     Wallpaper.wallpapersReadProc.running = true
+    ColorHelper.addElement(rootWallpaper)
   }
 
 }
