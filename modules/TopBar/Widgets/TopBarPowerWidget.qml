@@ -20,7 +20,7 @@ Rectangle {
   }/*
   Text {
     id: powerIcon 
-    color: Config.loadedDesign.font.color
+    color: Config.loadedTheme.font.color
     text: "󱍤"
   }
   */
@@ -42,10 +42,10 @@ Rectangle {
     implicitHeight: 100 
     Rectangle {
       anchors.fill: parent
-      color: Config.loadedDesign.main.background
-      border.color: Config.loadedDesign.main.bordercolor
-      radius: Config.loadedDesign.main.radius
-      opacity: Config.loadedDesign.main.opacity 
+      color: Config.loadedTheme.main.background
+      border.color: Config.loadedTheme.main.bordercolor
+      radius: Config.loadedTheme.main.radius
+      opacity: Config.loadedTheme.main.opacity 
       Column {
         anchors {
           topMargin: 15 
@@ -68,10 +68,10 @@ Rectangle {
           }
           Rectangle {
             required property var modelData
-            color: Config.loadedDesign.main.background
-            border.color: Config.loadedDesign.main.bordercolor
-            radius: Config.loadedDesign.main.radius
-            opacity: Config.loadedDesign.main.opacity 
+            color: Config.loadedTheme.main.background
+            border.color: Config.loadedTheme.main.bordercolor
+            radius: Config.loadedTheme.main.radius
+            opacity: Config.loadedTheme.main.opacity 
             implicitHeight: 30
             implicitWidth: 180 
             anchors.horizontalCenter: parent.horizontalCenter

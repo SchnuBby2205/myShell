@@ -22,17 +22,17 @@ Rectangle {
       }
     }
     onEntered: function() {
-      popupDesignMenu.visible = true
-      hideDesignTimer.start()
+      popupThemeMenu.visible = true
+      hideThemeTimer.start()
     }
   }
   Text {
     id: designIcon 
-    color: Config.loadedDesign.font.color 
+    color: Config.loadedTheme.font.color 
     text: "X"
   }
   PopupWindow {
-    id: popupDesignMenu
+    id: popupThemeMenu
     visible: false
     anchor.window: topBar 
     color: "transparent"
@@ -44,29 +44,29 @@ Rectangle {
     implicitHeight: 400
     Rectangle {
       anchors.fill: parent
-      color: Config.loadedDesign.main.background
-      border.color: Config.loadedDesign.main.bordercolor
-      radius: Config.loadedDesign.main.radius
-      opacity: Config.loadedDesign.main.opacity 
+      color: Config.loadedTheme.main.background
+      border.color: Config.loadedTheme.main.bordercolor
+      radius: Config.loadedTheme.main.radius
+      opacity: Config.loadedTheme.main.opacity 
 
       MouseArea {              
-        id: mouseDesignOne
+        id: mouseThemeOne
         hoverEnabled: true
         anchors.fill: parent
         acceptedButtons: Qt.LeftButton | Qt.RightButton
         onClicked: function(mouse) {
           if(mouse.button == Qt.RightButton) {
-            //Config.setDesign("dark")
+            //Config.setTheme("dark")
           }
           if(mouse.button == Qt.LeftButton) {
-            //Config.setDesign("light")
+            //Config.setTheme("light")
           }
         }
         onEntered: {
-          hideDesignTimer.stop()
+          hideThemeTimer.stop()
         }
         onExited: {
-          hideDesignTimer.start()
+          hideThemeTimer.start()
         }
       }
       Column {
@@ -80,13 +80,13 @@ Rectangle {
 
         Repeater {
           id: designRepeater
-          model: Config.listDesigns
+          model: Config.listThemes
           Rectangle {
             required property var modelData
-            color: Config.loadedDesign.main.background
-            border.color: Config.loadedDesign.main.bordercolor
-            radius: Config.loadedDesign.main.radius
-            opacity: Config.loadedDesign.main.opacity 
+            color: Config.loadedTheme.main.background
+            border.color: Config.loadedTheme.main.bordercolor
+            radius: Config.loadedTheme.main.radius
+            opacity: Config.loadedTheme.main.opacity 
             implicitHeight: 30
             implicitWidth: 180 
             anchors.horizontalCenter: parent.horizontalCenter
@@ -96,17 +96,17 @@ Rectangle {
               acceptedButtons: Qt.LeftButton | Qt.RightButton
               onClicked: function(mouse) {
                 //if(mouse.button == Qt.RightButton) {
-                  //Config.setDesign("dark")
+                  //Config.setTheme("dark")
                 //}
                 if(mouse.button == Qt.LeftButton) {
-                  Config.setDesign(modelData.id)
+                  Config.setTheme(modelData.id)
                 }                
               }
             }
             Text {
               anchors.centerIn: parent
               text: modelData.name
-              color: Config.loadedDesign.font.color
+              color: Config.loadedTheme.font.color
             }
           }        
         }
@@ -114,10 +114,10 @@ Rectangle {
     }
   }
   Timer {
-    id: hideDesignTimer
+    id: hideThemeTimer
     interval: 1000
     onTriggered: {
-      popupDesignMenu.visible = false
+      popupThemeMenu.visible = false
     }
   }
 }

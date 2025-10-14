@@ -63,7 +63,7 @@ Singleton {
           required property var modelData
           required property int index
           text: modelData.icon
-          color: Config.loadedDesign.font.color
+          color: Config.loadedTheme.font.color
 
           MouseArea {
             id: choosePic

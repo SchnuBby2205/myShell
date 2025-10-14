@@ -28,7 +28,7 @@ Rectangle {
   }
   Text {
     id: wallpaperIcon 
-    color: Config.loadedDesign.font.color 
+    color: Config.loadedTheme.font.color 
     text: "󱍤"
   }
   //Process {
@@ -47,10 +47,10 @@ Rectangle {
     implicitHeight: 30
     Rectangle {
       anchors.fill: parent
-      color: Config.loadedDesign.main.background
-      border.color: Config.loadedDesign.main.bordercolor
-      radius: Config.loadedDesign.main.radius
-      opacity: Config.loadedDesign.main.opacity 
+      color: Config.loadedTheme.main.background
+      border.color: Config.loadedTheme.main.bordercolor
+      radius: Config.loadedTheme.main.radius
+      opacity: Config.loadedTheme.main.opacity 
 
       MouseArea {              
         id: mouseOne
@@ -73,7 +73,7 @@ Rectangle {
       Text {
         anchors.centerIn: parent
         text: Wallpaper.currentWallpaperFileName 
-        color: Config.loadedDesign.font.color
+        color: Config.loadedTheme.font.color
       }
     }
   }
