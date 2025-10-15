@@ -24,7 +24,7 @@ PanelWindow {
     id: topBarContent
     opacity: Config.loadedTheme.main.opacity
     color: Config.loadedTheme.main.background
-    border.color: Config.loadedTheme.main.bordercolor
+    //border.color: Config.loadedTheme.main.bordercolor
     radius: Config.loadedTheme.main.radius
     anchors {
       fill: parent

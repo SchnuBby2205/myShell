@@ -8,6 +8,7 @@ Singleton {
   id: root
 
   readonly property string wallpaperDir: "/home/schnubby/Bilder/Wallpapers/"
+  readonly property string wallpaperCacheDir: "/home/schnubby/.cache/Wallpapers_thumbs/"
   property var arrWallpapers: []
   property ListModel listWallpapers: ListModel{} 
   property string currentWallpaper: ""
@@ -27,7 +28,8 @@ Singleton {
   Process {
     id: wallpapersReadProc
     running: false
-    command: ["ls", wallpaperDir]
+    //command: ["ls", wallpaperDir]
+    command: ["ls", wallpaperCacheDir]
     stdout: StdioCollector {
       onStreamFinished: {
         arrWallpapers = []
@@ -59,6 +61,23 @@ Singleton {
       Repeater {
         id: test
         model: listWallpapers
+        Image {
+          required property var modelData
+          required property int index
+          source: wallpaperCacheDir + modelData.icon
+          width: 100
+          height: 100
+          MouseArea {
+            id: choosePic
+            anchors.fill: parent
+            onClicked: {
+              Config.appSettings.currentWallpaper = modelData.icon
+              currentWallpaper = wallpaperDir + modelData.icon
+              wallpapersSetProc.running = true
+            }
+          }
+        }  
+        /*
         Text {
           required property var modelData
           required property int index
@@ -74,6 +93,7 @@ Singleton {
             }
           }
         }  
+        */
       }
     }
   }
