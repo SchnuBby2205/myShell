@@ -70,11 +70,11 @@ Rectangle {
           model: ListModel {
             ListElement {
               name: "Reboot"
-              icon: "../../../Assets/reboot.png"
+              command: "reboot"
             }
             ListElement {
               name: "Shutdown"
-              icon: "../../../Assets/power.png"
+              command: "shutdown"
             }
           }
           Rectangle {

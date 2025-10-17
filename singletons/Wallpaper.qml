@@ -3,16 +3,17 @@ pragma Singleton
 import Quickshell
 import Quickshell.Io
 import QtQuick
+import QtQuick.Controls
 
 Singleton {
   id: root
 
   readonly property string wallpaperDir: "/home/schnubby/Bilder/Wallpapers/"
-  readonly property string wallpaperCacheDir: "/home/schnubby/.cache/Wallpapers_thumbs/"
+  readonly property string wallpaperCacheDir: "/home/schnubby/.cache/Wallpaper_thumbs/"
   property var arrWallpapers: []
   property ListModel listWallpapers: ListModel{} 
   property string currentWallpaper: ""
-  
+  property bool wallpapersLoaded: false  
 
   function setRandomWallpaper(): void {
     var rnd = Math.floor(Math.random() * (arrWallpapers.length - 1))
@@ -21,9 +22,12 @@ Singleton {
     wallpapersSetProc.running = true
   }
   function togglePicker(): void {
+    if(!wallpapersLoaded) Wallpaper.wallpapersReadProc.running = true
     wallpaperPicker.visible = !wallpaperPicker.visible
   }
-
+  function cacheWallpapers(): void {
+    Quickshell.execDetached("/programmieren/repos/myShell/Bin/create_thumbnails.sh")
+  }
   property alias wallpapersReadProc: wallpapersReadProc
   Process {
     id: wallpapersReadProc
@@ -38,6 +42,7 @@ Singleton {
           wallpaperName != "" ? arrWallpapers.push(wallpaperName) : null
           wallpaperName != "" ? root.listWallpapers.append({name: "test", icon:wallpaperName}) : null
         }
+        wallpapersLoaded = true
       }
     }
   }
@@ -51,49 +56,50 @@ Singleton {
     implicitWidth: 100
     visible: false
     color: "transparent" 
-    Grid {
-      anchors {
-        verticalCenter: parent.verticalCenter
-        horizontalCenter: parent.hoarizontalCenter
-      }
-      columns: 4
-      spacing: 15
-      Repeater {
-        id: test
-        model: listWallpapers
-        Image {
-          required property var modelData
-          required property int index
-          source: wallpaperCacheDir + modelData.icon
-          width: 100
-          height: 100
-          MouseArea {
-            id: choosePic
-            anchors.fill: parent
-            onClicked: {
-              Config.appSettings.currentWallpaper = modelData.icon
-              currentWallpaper = wallpaperDir + modelData.icon
-              wallpapersSetProc.running = true
-            }
+
+    Rectangle {
+      id: wallpapers
+
+      opacity: Config.loadedTheme.main.opacity
+      color: Config.loadedTheme.main.background
+      radius: Config.loadedTheme.main.radius
+
+      anchors.fill: parent
+
+      ScrollView {
+        anchors.fill: parent
+        ScrollBar.vertical.policy: ScrollBar.AlwaysOn  // optional
+        ScrollBar.horizontal.policy: ScrollBar.AsNeeded        
+
+        Grid {
+          anchors {
+            verticalCenter: parent.verticalCenter
+            horizontalCenter: parent.hoarizontalCenter
           }
-        }  
-        /*
-        Text {
-          required property var modelData
-          required property int index
-          text: modelData.icon
-          color: Config.loadedTheme.font.color
-          MouseArea {
-            id: choosePic
-            anchors.fill: parent
-            onClicked: {
-              Config.appSettings.currentWallpaper = modelData.icon
-              currentWallpaper = wallpaperDir + modelData.icon
-              wallpapersSetProc.running = true
-            }
+          columns: 8
+          spacing: 15
+          Repeater {
+            id: test
+            model: listWallpapers
+            Image {
+              required property var modelData
+              required property int index
+              source: wallpaperCacheDir + modelData.icon
+              width: 100
+              height: 100
+              MouseArea {
+                id: choosePic
+                anchors.fill: parent
+                onClicked: {
+                  Config.appSettings.currentWallpaper = modelData.icon
+                  currentWallpaper = wallpaperDir + modelData.icon
+                  console.log(currentWallpaper)
+                  wallpapersSetProc.running = true
+                }
+              }
+            }  
           }
-        }  
-        */
+        }
       }
     }
   }
