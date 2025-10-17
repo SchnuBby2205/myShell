@@ -26,7 +26,7 @@ Singleton {
     wallpaperPicker.visible = !wallpaperPicker.visible
   }
   function cacheWallpapers(): void {
-    Quickshell.execDetached("/$HOME/.config/quickshell/myShell/Bin/create_thumbnails.sh")
+    Quickshell.execDetached("/bin/create_thumbnails.sh")
   }
   property alias wallpapersReadProc: wallpapersReadProc
   Process {
