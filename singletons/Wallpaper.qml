@@ -22,6 +22,7 @@ Singleton {
     wallpapersSetProc.running = true
   }
   function togglePicker(): void {
+    cacheWallpapers()
     wallpapersReadProc.running = true
     wallpaperPicker.visible = !wallpaperPicker.visible
   }
