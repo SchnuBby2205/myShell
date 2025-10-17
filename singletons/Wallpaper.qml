@@ -13,7 +13,7 @@ Singleton {
   property var arrWallpapers: []
   property ListModel listWallpapers: ListModel{} 
   property string currentWallpaper: ""
-  property bool wallpapersLoaded: false  
+  //property bool wallpapersLoaded: false  
 
   function setRandomWallpaper(): void {
     var rnd = Math.floor(Math.random() * (arrWallpapers.length - 1))
@@ -22,7 +22,7 @@ Singleton {
     wallpapersSetProc.running = true
   }
   function togglePicker(): void {
-    if(!wallpapersLoaded) Wallpaper.wallpapersReadProc.running = true
+    wallpapersReadProc.running = true
     wallpaperPicker.visible = !wallpaperPicker.visible
   }
   function cacheWallpapers(): void {
@@ -42,7 +42,7 @@ Singleton {
           wallpaperName != "" ? arrWallpapers.push(wallpaperName) : null
           wallpaperName != "" ? root.listWallpapers.append({name: "test", icon:wallpaperName}) : null
         }
-        wallpapersLoaded = true
+        //wallpapersLoaded = true
       }
     }
   }
