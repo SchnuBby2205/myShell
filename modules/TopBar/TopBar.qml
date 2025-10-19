@@ -39,6 +39,7 @@ PanelWindow {
       implicitWidth: 105
       radius: Config.loadedTheme.main.radius
       color: Config.loadedTheme.main.background
+      opacity: Config.loadedTheme.main.opacity
       TopBarWorkspaceWidget {
         id: topBarWorkspaceWidget
       }
@@ -48,6 +49,7 @@ PanelWindow {
       implicitWidth: 500
       radius: Config.loadedTheme.main.radius
       color: Config.loadedTheme.main.background
+      opacity: Config.loadedTheme.main.opacity
       anchors.centerIn: parent
       TopBarActiveWindowWidget {
         id: topBarActiveWindowWidget
