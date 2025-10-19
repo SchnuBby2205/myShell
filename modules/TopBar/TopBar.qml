@@ -23,24 +23,49 @@ PanelWindow {
   Rectangle {
     id: topBarContent
     opacity: Config.loadedTheme.main.opacity
-    color: Config.loadedTheme.main.background
+    //color: Config.loadedTheme.main.background
     //border.color: Config.loadedTheme.main.bordercolor
+    color: "transparent"
     radius: Config.loadedTheme.main.radius
     anchors {
       fill: parent
-      topMargin: 2
+      topMargin: 0
       bottomMargin: 2
       leftMargin: 2
       rightMargin: 2
     }
-    TopBarWorkspaceWidget {
-      id: topBarWorkspaceWidget
+    Rectangle {
+      implicitHeight: 30
+      implicitWidth: 105
+      radius: Config.loadedTheme.main.radius
+      color: Config.loadedTheme.main.background
+      TopBarWorkspaceWidget {
+        id: topBarWorkspaceWidget
+      }
     }
-    TopBarActiveWindowWidget {
-      id: topBarActiveWindowWidget
+    Rectangle {
+      implicitHeight: 30
+      implicitWidth: 500
+      radius: Config.loadedTheme.main.radius
+      color: Config.loadedTheme.main.background
+      anchors.centerIn: parent
+      TopBarActiveWindowWidget {
+        id: topBarActiveWindowWidget
+      }
     }
-    TopBarRightWrapper {
-      id: topBarRightWrapper
+    Rectangle {
+      implicitHeight: 30
+      implicitWidth: 140
+      radius: Config.loadedTheme.main.radius
+      color: Config.loadedTheme.main.background
+      anchors {
+        right: parent.right
+        verticalCenter: parent.verticalCenter
+        //rightMargin: 5 
+      }
+      TopBarRightWrapper {
+        id: topBarRightWrapper
+      }
     }
   }
 }
