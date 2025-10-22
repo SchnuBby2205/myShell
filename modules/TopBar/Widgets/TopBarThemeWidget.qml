@@ -27,6 +27,7 @@ Rectangle {
     hoverEnabled: true
     onEntered: function() {
       PopupHandler.show(popupThemeMenu, rootTheme)
+      popupThemeMenuRect.opacity = 1
       hideThemePopup.stop()
     }
     onExited: function() {
@@ -47,9 +48,12 @@ Rectangle {
     implicitHeight: Config.listThemes.count * 50
 
     Rectangle {
+      id: popupThemeMenuRect
+
       anchors.fill: parent
 
-      opacity: Config.loadedTheme.main.opacity
+      //opacity: Config.loadedTheme.main.opacity
+      opacity: 0
       color: Config.loadedTheme.main.background
       border.color: Config.loadedTheme.main.bordercolor
       radius: Config.loadedTheme.main.radius
@@ -111,6 +115,9 @@ Rectangle {
           }
         }
       }
+      Behavior on opacity {
+        PropertyAnimation {duration: 1000}
+      }
     }
   }
 
@@ -123,6 +130,7 @@ Rectangle {
     interval: 1000
     onTriggered: {
       popupThemeMenu.visible = false
+      popupThemeMenuRect.opacity = 0
       rootTheme.color = Config.loadedTheme.main.background
     }
   }

@@ -16,6 +16,7 @@ PanelWindow {
   margins {
     left: 0
     right: 0
+    top: 5
   }
   //color: "grey"
   // Wenn das Panel transparent ist, kann das rectangle rounded sein.
