@@ -54,8 +54,8 @@ Rectangle {
 
       anchors.fill: parent
 
-      opacity: Config.loadedTheme.main.opacity
-      //opacity: 0
+      //opacity: Config.loadedTheme.main.opacity
+      opacity: 0
       color: Config.loadedTheme.main.background
       border.color: Config.loadedTheme.main.bordercolor
       radius: Config.loadedTheme.main.radius
@@ -117,18 +117,20 @@ Rectangle {
           }
         }
       }
-      SequentialAnimation {
+      ParallelAnimation {
         id: flyIn
         //running: true
-        //NumberAnimation { target: popupThemeMenu; property: "anchor.rect.x"; to: 50; duration: 1000 }
-        NumberAnimation { target: popupThemeMenu; property: "anchor.rect.y"; to: 35; duration: 50 }
+        NumberAnimation { target: popupThemeMenu; property: "anchor.rect.y"; to: 35; duration: 100 }
+        NumberAnimation { target: popupThemeMenuRect; property: "opacity"; to: Config.loadedTheme.main.opacity; duration: 100 }
       }
       SequentialAnimation {
         id: flyOut
-        //running: true
-        //NumberAnimation { target: popupThemeMenu; property: "anchor.rect.x"; to: 50; duration: 1000 }
-        NumberAnimation { target: popupThemeMenu; property: "anchor.rect.y"; to: 0; duration: 50 }
-        NumberAnimation { target: popupThemeMenu; property: "visible"; to: 0; duration: 50 }
+        ParallelAnimation {
+          //running: true
+          NumberAnimation { target: popupThemeMenu; property: "anchor.rect.y"; to: 0; duration: 100 }
+          NumberAnimation { target: popupThemeMenuRect; property: "opacity"; to: 0; duration: 100 }
+        }
+        PropertyAction {target: popupThemeMenu; property: "visible"; value: false}
       }
       /*
       Behavior on opacity {
@@ -146,9 +148,9 @@ Rectangle {
     id: hideThemePopup
     interval: 1000
     onTriggered: {
-      //popupThemeMenu.visible = false
       //popupThemeMenuRect.opacity = 0
       flyOut.running = true
+      //popupThemeMenu.visible = false
       rootTheme.color = Config.loadedTheme.main.background
     }
   }
