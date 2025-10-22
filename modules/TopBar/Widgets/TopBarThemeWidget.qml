@@ -27,7 +27,8 @@ Rectangle {
     hoverEnabled: true
     onEntered: function() {
       PopupHandler.show(popupThemeMenu, rootTheme)
-      popupThemeMenuRect.opacity = 1
+      //popupThemeMenuRect.opacity = 1
+      flyIn.running = true
       hideThemePopup.stop()
     }
     onExited: function() {
@@ -42,7 +43,8 @@ Rectangle {
     color: "transparent"
 
     anchor.rect.x: parentWindow.width 
-    anchor.rect.y: parentWindow.height
+    //anchor.rect.y: parentWindow.height
+    anchor.rect.y: 0
 
     implicitWidth: 200  
     implicitHeight: Config.listThemes.count * 50
@@ -52,8 +54,8 @@ Rectangle {
 
       anchors.fill: parent
 
-      //opacity: Config.loadedTheme.main.opacity
-      opacity: 0
+      opacity: Config.loadedTheme.main.opacity
+      //opacity: 0
       color: Config.loadedTheme.main.background
       border.color: Config.loadedTheme.main.bordercolor
       radius: Config.loadedTheme.main.radius
@@ -115,9 +117,24 @@ Rectangle {
           }
         }
       }
+      SequentialAnimation {
+        id: flyIn
+        //running: true
+        //NumberAnimation { target: popupThemeMenu; property: "anchor.rect.x"; to: 50; duration: 1000 }
+        NumberAnimation { target: popupThemeMenu; property: "anchor.rect.y"; to: 35; duration: 50 }
+      }
+      SequentialAnimation {
+        id: flyOut
+        //running: true
+        //NumberAnimation { target: popupThemeMenu; property: "anchor.rect.x"; to: 50; duration: 1000 }
+        NumberAnimation { target: popupThemeMenu; property: "anchor.rect.y"; to: 0; duration: 50 }
+        NumberAnimation { target: popupThemeMenu; property: "visible"; to: 0; duration: 50 }
+      }
+      /*
       Behavior on opacity {
         PropertyAnimation {duration: 1000}
       }
+      */
     }
   }
 
@@ -129,8 +146,9 @@ Rectangle {
     id: hideThemePopup
     interval: 1000
     onTriggered: {
-      popupThemeMenu.visible = false
-      popupThemeMenuRect.opacity = 0
+      //popupThemeMenu.visible = false
+      //popupThemeMenuRect.opacity = 0
+      flyOut.running = true
       rootTheme.color = Config.loadedTheme.main.background
     }
   }
