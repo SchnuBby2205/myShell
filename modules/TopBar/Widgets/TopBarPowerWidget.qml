@@ -8,7 +8,7 @@ Rectangle {
   id: rootPower
   
   //opacity: Config.loadedTheme.main.opacity
-  color: Config.loadedTheme.main.background
+  color: "transparent"
   //border.color: Config.loadedTheme.main.bordercolor
   radius: Config.loadedTheme.main.radius
 
@@ -30,6 +30,7 @@ Rectangle {
     hoverEnabled: true
     onEntered: function() {
       PopupHandler.show(popupPowerMenu, rootPower)
+      flyIn.running = true
       hidePowerPopup.stop()
     }
     onExited: function() {
@@ -44,12 +45,14 @@ Rectangle {
     color: "transparent"
 
     anchor.rect.x: parentWindow.width 
-    anchor.rect.y: parentWindow.height
+    // anchor.rect.y: parentWindow.height
+    anchor.rect.y: 0
 
     implicitWidth: 200  
     implicitHeight: 100
 
     Rectangle {
+      id: popupPowerMenuRect
       anchors.fill: parent
 
       opacity: Config.loadedTheme.main.opacity
@@ -116,6 +119,22 @@ Rectangle {
           }
         }
       }
+      ParallelAnimation {
+        id: flyIn
+        //running: true
+        NumberAnimation { target: popupPowerMenu; property: "anchor.rect.y"; to: 35; duration: 100 }
+        NumberAnimation { target: popupPowerMenuRect; property: "opacity"; to: Config.loadedTheme.main.opacity; duration: 100 }
+      }
+      SequentialAnimation {
+        id: flyOut
+        ParallelAnimation {
+          //running: true
+          NumberAnimation { target: popupPowerMenu; property: "anchor.rect.y"; to: 0; duration: 100 }
+          NumberAnimation { target: popupPowerMenuRect; property: "opacity"; to: 0; duration: 100 }
+        }
+        PropertyAction {target: popupPowerMenu; property: "visible"; value: false}
+      }
+
     }
   }
 
@@ -137,8 +156,10 @@ Rectangle {
     id: hidePowerPopup
     interval: 1000
     onTriggered: {
-      popupPowerMenu.visible = false
-      rootPower.color = Config.loadedTheme.main.background
+      //popupPowerMenu.visible = false
+      flyOut.running = true
+      //rootPower.color = Config.loadedTheme.main.background
+      rootPower.color = "transparent"
     }
   }
 

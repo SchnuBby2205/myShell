@@ -7,7 +7,7 @@ Rectangle {
   id: rootTheme
   
   //opacity: Config.loadedTheme.main.opacity
-  color: Config.loadedTheme.main.background
+  color: "transparent"
   //border.color: Config.loadedTheme.main.bordercolor
   radius: Config.loadedTheme.main.radius
 
@@ -132,11 +132,6 @@ Rectangle {
         }
         PropertyAction {target: popupThemeMenu; property: "visible"; value: false}
       }
-      /*
-      Behavior on opacity {
-        PropertyAnimation {duration: 1000}
-      }
-      */
     }
   }
 
@@ -151,7 +146,8 @@ Rectangle {
       //popupThemeMenuRect.opacity = 0
       flyOut.running = true
       //popupThemeMenu.visible = false
-      rootTheme.color = Config.loadedTheme.main.background
+      //rootTheme.color = Config.loadedTheme.main.background
+      rootTheme.color = "transparent"
     }
   }
 }

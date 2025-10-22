@@ -7,7 +7,7 @@ Rectangle {
   id: rootWallpaper
   
   //opacity: Config.loadedTheme.main.opacity
-  color: Config.loadedTheme.main.background
+  color: "transparent"
   //border.color: Config.loadedTheme.main.bordercolor
   radius: Config.loadedTheme.main.radius
 
@@ -31,6 +31,7 @@ Rectangle {
     hoverEnabled: true
     onEntered: function() {
       PopupHandler.show(popupWallpaperMenu, rootWallpaper)
+      flyIn.running = true
       hideWallpaperPopup.stop()
     }
     onExited: function() {
@@ -50,12 +51,14 @@ Rectangle {
     color: "transparent"
 
     anchor.rect.x: parentWindow.width 
-    anchor.rect.y: parentWindow.height
+    //anchor.rect.y: parentWindow.height
+    anchor.rect.y: 0
 
     implicitWidth: 200  
     implicitHeight: 30
 
     Rectangle {
+      id: popupWallpaperMenuRect
       anchors.fill: parent
 
       opacity: Config.loadedTheme.main.opacity
@@ -81,6 +84,22 @@ Rectangle {
         color: Config.loadedTheme.font.color
         text: Config.appSettings.currentWallpaper
       }
+      ParallelAnimation {
+        id: flyIn
+        //running: true
+        NumberAnimation { target: popupWallpaperMenu; property: "anchor.rect.y"; to: 35; duration: 100 }
+        NumberAnimation { target: popupWallpaperMenuRect; property: "opacity"; to: Config.loadedTheme.main.opacity; duration: 100 }
+      }
+      SequentialAnimation {
+        id: flyOut
+        ParallelAnimation {
+          //running: true
+          NumberAnimation { target: popupWallpaperMenu; property: "anchor.rect.y"; to: 0; duration: 100 }
+          NumberAnimation { target: popupWallpaperMenuRect; property: "opacity"; to: 0; duration: 100 }
+        }
+        PropertyAction {target: popupWallpaperMenu; property: "visible"; value: false}
+      }
+
     }
   }
 
@@ -88,8 +107,9 @@ Rectangle {
     id: hideWallpaperPopup
     interval: 1000
     onTriggered: {
-      popupWallpaperMenu.visible = false
-      rootWallpaper.color = Config.loadedTheme.main.background
+      //popupWallpaperMenu.visible = false
+      flyOut.running = true
+      rootWallpaper.color = "transparent"
     }
   }
   
