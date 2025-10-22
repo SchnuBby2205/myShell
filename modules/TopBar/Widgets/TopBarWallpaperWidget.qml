@@ -6,9 +6,9 @@ import "../../../singletons/"
 Rectangle {
   id: rootWallpaper
   
-  opacity: Config.loadedTheme.main.opacity
-  color: Config.loadedTheme.main.background
-  border.color: Config.loadedTheme.main.bordercolor
+  //opacity: Config.loadedTheme.main.opacity
+  //color: Config.loadedTheme.main.background
+  //border.color: Config.loadedTheme.main.bordercolor
   radius: Config.loadedTheme.main.radius
 
   implicitHeight: 20
@@ -21,7 +21,7 @@ Rectangle {
   Text {
     id: rootWallpaperText
     anchors.centerIn: parent
-    text: "W"
+    text: "󰸉"
     color: Config.loadedTheme.font.color
   }
 

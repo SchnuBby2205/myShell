@@ -7,9 +7,9 @@ import "../../../singletons/"
 Rectangle {
   id: rootPower
   
-  opacity: Config.loadedTheme.main.opacity
-  color: Config.loadedTheme.main.background
-  border.color: Config.loadedTheme.main.bordercolor
+  //opacity: Config.loadedTheme.main.opacity
+  //color: Config.loadedTheme.main.background
+  //border.color: Config.loadedTheme.main.bordercolor
   radius: Config.loadedTheme.main.radius
 
   implicitHeight: 20
@@ -20,7 +20,7 @@ Rectangle {
   Text {
     id: rootPowerText
     anchors.centerIn: parent
-    text: "P"
+    text: "󰤆"
     color: Config.loadedTheme.font.color
   }
 
