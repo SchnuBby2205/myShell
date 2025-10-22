@@ -18,11 +18,12 @@ Row {
       implicitHeight: 20
       implicitWidth: 20
       radius: 5
-      color: modelData.active ? Config.loadedTheme.main.backgroundMarked : "grey"
+      //color: modelData.active ? Config.loadedTheme.main.backgroundMarked : "grey"
+      color: Hypr.activeWS && modelData.id == Hypr.activeWS.id ? Config.loadedTheme.main.backgroundMarked : "grey"
       Text {
         id: workspaceId
         //text: Hypr.activeWS && modelData.id == Hypr.activeWS.id ? "🌑" : ""
-        font.underline: Hypr.activeWS && modelData.id == Hypr.activeWS.id ? true : false
+        //font.underline: Hypr.activeWS && modelData.id == Hypr.activeWS.id ? true : false
         text: modelData.id
         font.family: Config.loadedTheme.font.standard
         anchors {
