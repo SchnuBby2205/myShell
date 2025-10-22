@@ -61,6 +61,7 @@ PanelWindow {
       implicitWidth: 140
       radius: Config.loadedTheme.main.radius
       color: Config.loadedTheme.main.background
+      opacity: Config.loadedTheme.main.opacity
       anchors {
         right: parent.right
         verticalCenter: parent.verticalCenter
