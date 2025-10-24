@@ -16,8 +16,8 @@ Item {
     implicitWidth: 150
     //radius: Config.loadedTheme.main.radius
     radius: 25
-    color: "#222222AA"
-    //color: "transparent"
+    //color: "#222222AA"
+    color: "transparent"
     //color: "white"
 
     Row {

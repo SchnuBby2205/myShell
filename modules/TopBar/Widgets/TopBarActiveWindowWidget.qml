@@ -16,7 +16,8 @@ Item {
         implicitHeight: 30
         implicitWidth: 600
         radius: Config.loadedTheme.main.radius
-        color: "#222222AA"
+        //color: "#222222AA"
+        color: "transparent"
         Text {
             id: activeWindow
             color: Config.loadedTheme.font.color 
