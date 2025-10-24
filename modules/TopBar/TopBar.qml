@@ -18,58 +18,8 @@ PanelWindow {
     right: 0
     top: 5
   }
-  //color: "grey"
-  // Wenn das Panel transparent ist, kann das rectangle rounded sein.
   color: "transparent"
-  Rectangle {
-    id: topBarContent
-    opacity: Config.loadedTheme.main.opacity
-    //color: Config.loadedTheme.main.background
-    //border.color: Config.loadedTheme.main.bordercolor
-    color: "transparent"
-    radius: Config.loadedTheme.main.radius
-    anchors {
-      fill: parent
-      topMargin: 0
-      bottomMargin: 2
-      leftMargin: 2
-      rightMargin: 2
-    }
-    Rectangle {
-      implicitHeight: 30
-      implicitWidth: 105
-      radius: Config.loadedTheme.main.radius
-      color: Config.loadedTheme.main.background
-      opacity: Config.loadedTheme.main.opacity
-      TopBarWorkspaceWidget {
-        id: topBarWorkspaceWidget
-      }
-    }
-    Rectangle {
-      implicitHeight: 30
-      implicitWidth: 500
-      radius: Config.loadedTheme.main.radius
-      color: Config.loadedTheme.main.background
-      opacity: Config.loadedTheme.main.opacity
-      anchors.centerIn: parent
-      TopBarActiveWindowWidget {
-        id: topBarActiveWindowWidget
-      }
-    }
-    Rectangle {
-      implicitHeight: 30
-      implicitWidth: 140
-      radius: Config.loadedTheme.main.radius
-      color: Config.loadedTheme.main.background
-      opacity: Config.loadedTheme.main.opacity
-      anchors {
-        right: parent.right
-        verticalCenter: parent.verticalCenter
-        //rightMargin: 5 
-      }
-      TopBarRightWrapper {
-        id: topBarRightWrapper
-      }
-    }
-  }
+  TopBarWorkspaceWidget {}
+  TopBarActiveWindowWidget {x: parent.width / 2 - 300}
+  TopBarRightWrapper {x: parent.width - 150}
 }

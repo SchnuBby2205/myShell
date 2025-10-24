@@ -4,7 +4,7 @@
             "background": "black",
             "backgroundMarked": "red",
             "bordercolor": "white",
-            "radius": 5,
+            "radius": 50,
             "opacity": 0.7
         },
         "font":{
