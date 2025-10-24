@@ -178,6 +178,7 @@ Rectangle {
             target: themePopupContainer
             opacity: 0
             scale: 0
+            visible: false
           }
         }
       ]
