@@ -84,6 +84,7 @@ Rectangle {
         color: Config.loadedTheme.font.color
         text: Config.appSettings.currentWallpaper
       }
+      
       ParallelAnimation {
         id: flyIn
         //running: true
@@ -99,6 +100,7 @@ Rectangle {
         }
         PropertyAction {target: popupWallpaperMenu; property: "visible"; value: false}
       }
+      
 
     }
   }

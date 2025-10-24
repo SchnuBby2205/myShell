@@ -1,5 +1,7 @@
 import Quickshell
 import QtQuick
+import QtQuick.Controls
+import Qt5Compat.GraphicalEffects
 
 import "../../../singletons/"
 
@@ -27,14 +29,15 @@ Rectangle {
     hoverEnabled: true
     onEntered: function() {
       PopupHandler.show(popupThemeMenu, rootTheme)
-      //popupThemeMenuRect.opacity = 1
-      flyIn.running = true
       hideThemePopup.stop()
+      childVisible = !childVisible
     }
     onExited: function() {
       hideThemePopup.start()
     }
   }
+
+  property bool childVisible: false
 
   PopupWindow {
     id: popupThemeMenu
@@ -43,8 +46,7 @@ Rectangle {
     color: "transparent"
 
     anchor.rect.x: parentWindow.width 
-    //anchor.rect.y: parentWindow.height
-    anchor.rect.y: 0
+    anchor.rect.y: parentWindow.height
 
     implicitWidth: 200  
     implicitHeight: Config.listThemes.count * 50
@@ -56,9 +58,24 @@ Rectangle {
 
       //opacity: Config.loadedTheme.main.opacity
       opacity: 0
-      color: Config.loadedTheme.main.background
+      color: "#222222AA" // Glass Look
+      //color: Config.loadedTheme.main.background
       border.color: Config.loadedTheme.main.bordercolor
       radius: Config.loadedTheme.main.radius
+
+      // blur und schatten
+      layer.enabled: true
+      layer.effect: DropShadow {
+        radius: 16
+        samples: 24
+        color: "#00000066"
+        //horizontalOffest: 0
+        verticalOffset: 50
+        source: FastBlur {
+          radius: 16
+          source: popupThemeMenuRect
+        }
+      }
       
       Column {
         anchors {
@@ -117,21 +134,36 @@ Rectangle {
           }
         }
       }
-      ParallelAnimation {
-        id: flyIn
-        //running: true
-        NumberAnimation { target: popupThemeMenu; property: "anchor.rect.y"; to: 35; duration: 100 }
-        NumberAnimation { target: popupThemeMenuRect; property: "opacity"; to: Config.loadedTheme.main.opacity; duration: 100 }
-      }
-      SequentialAnimation {
-        id: flyOut
-        ParallelAnimation {
-          //running: true
-          NumberAnimation { target: popupThemeMenu; property: "anchor.rect.y"; to: 0; duration: 100 }
-          NumberAnimation { target: popupThemeMenuRect; property: "opacity"; to: 0; duration: 100 }
+      Behavior on opacity {
+        NumberAnimation {
+          duration: 500
+          easing.type: Easing.InOutQuad
+          //easing.type: Easing.BezierSpline
+          //easing.bezierCurve: [0.38, 1.21, 0.22, 1, 1, 1]
         }
-        PropertyAction {target: popupThemeMenu; property: "visible"; value: false}
       }
+      Behavior on y {
+        NumberAnimation {
+          duration: 450
+          easing.type: Easing.OutCubic
+        }
+      }
+      states: [
+        State {
+          name: "visible"
+          when: rootTheme.childVisible
+          PropertyChanges {
+            target: popupThemeMenuRect
+            opacity: 1.0
+            y: rootTheme.height / 2 - height / 2
+          }
+        },
+        State {
+          name: "hidden"
+          when: !rootTheme.childVisible
+          PropertyChanges { target: popupThemeMenuRect; opacity: 0; }
+        }
+      ]
     }
   }
 
@@ -144,9 +176,9 @@ Rectangle {
     interval: 1000
     onTriggered: {
       //popupThemeMenuRect.opacity = 0
-      flyOut.running = true
       //popupThemeMenu.visible = false
       //rootTheme.color = Config.loadedTheme.main.background
+      rootTheme.childVisible = false
       rootTheme.color = "transparent"
     }
   }
