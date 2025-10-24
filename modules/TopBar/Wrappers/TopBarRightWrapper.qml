@@ -1,6 +1,6 @@
 import Quickshell
 import QtQuick
-import QtQuick.Effects
+import QtQuick.Controls
 import Qt5Compat.GraphicalEffects
 
 import "../Widgets/"
@@ -34,6 +34,7 @@ Item {
       TopBarWallpaperWidget {
         id: topBarWallpaperWidget
       }
+
       TopBarSoundWidget {
         id: topBarSoundWidget
       }

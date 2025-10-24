@@ -1,5 +1,5 @@
 [
-    {"id": "dark", "name":"Dark Theme",
+    {"id": "dark", "name":"Dark Theme", "icon": "",
         "main":{
             "background": "black",
             "backgroundMarked": "red",
@@ -13,7 +13,7 @@
             "standard": "CaskaydiaCove NF"
         }
     },
-    {"id": "light", "name":"Light Theme",
+    {"id": "light", "name":"Light Theme", "icon": "",
         "main":{
             "background": "white",
             "backgroundMarked": "blue",

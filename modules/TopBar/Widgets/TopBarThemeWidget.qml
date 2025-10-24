@@ -5,78 +5,71 @@ import Qt5Compat.GraphicalEffects
 
 import "../../../singletons/"
 
+
+
+//=========================================================================
 Rectangle {
-  id: rootTheme
-  
-  //opacity: Config.loadedTheme.main.opacity
-  color: "transparent"
-  //border.color: Config.loadedTheme.main.bordercolor
-  radius: Config.loadedTheme.main.radius
-
+  id: themeRoot
   implicitHeight: 20
-  implicitWidth: 20  
-
-  Text {
-    id: rootThemeText
-    anchors.centerIn: parent
-    text: "󰔎"
-    color: Config.loadedTheme.font.color
-  }
-
+  implicitWidth: 20
+  radius: 25
+  color: "red"
+  border.color: "green"
   MouseArea {
-    id: themeControl
+    id: themeHover
     anchors.fill: parent
-    hoverEnabled: true
-    onEntered: function() {
-      PopupHandler.show(popupThemeMenu, rootTheme)
-      hideThemePopup.stop()
+    onClicked: {
+      PopupHandler.show(themePopup, themeRoot)
+      //hideThemePopup.stop()
       childVisible = !childVisible
     }
-    onExited: function() {
-      hideThemePopup.start()
-    }
   }
+
+      //color: "white"
+      // blur und schatten
+      layer.enabled: true
+      layer.effect: DropShadow {
+        radius: 5
+        samples: 24
+        color: "#fa0808ff"
+        //horizontalOffest: 0
+        verticalOffset: 1
+        source: FastBlur {
+          radius: 10
+          source: themeControlEntriesElements
+        }
+      }  
+
+      Text {
+        anchors.centerIn: parent
+        text: "󰔎"
+      }
 
   property bool childVisible: false
 
   PopupWindow {
-    id: popupThemeMenu
-    visible: false
-    anchor.window: topBar 
-    color: "transparent"
+    id: themePopup
+    anchor.window: topBar
+    
+    // Nutze ein eigenes Property zur Animation:
+    property real popupOffset: 5
 
-    anchor.rect.x: parentWindow.width 
-    anchor.rect.y: parentWindow.height
-
-    implicitWidth: 200  
+    anchor.rect.x: topBar.width
+    anchor.rect.y: topBar.height + popupOffset
+    //anchor.rect.y: 0
+    implicitWidth: 200
     implicitHeight: Config.listThemes.count * 50
-
+    color: "transparent"
     Rectangle {
-      id: popupThemeMenuRect
+      border.color: "#fa0808ff"
 
+      scale: 0
+      id: themePopupContainer
       anchors.fill: parent
-
-      //opacity: Config.loadedTheme.main.opacity
       opacity: 0
-      color: "#222222AA" // Glass Look
-      //color: Config.loadedTheme.main.background
-      border.color: Config.loadedTheme.main.bordercolor
-      radius: Config.loadedTheme.main.radius
-
-      // blur und schatten
-      layer.enabled: true
-      layer.effect: DropShadow {
-        radius: 16
-        samples: 24
-        color: "#00000066"
-        //horizontalOffest: 0
-        verticalOffset: 50
-        source: FastBlur {
-          radius: 16
-          source: popupThemeMenuRect
-        }
-      }
-      
+      radius: 25
+      //color: "#222222AA"
+      color: "white"
       Column {
         anchors {
           topMargin: 15 
@@ -105,11 +98,11 @@ Rectangle {
               anchors.fill: parent
               hoverEnabled: true
               onEntered: function() {
-                hideThemePopup.stop()
+                //hideThemePopup.stop()
                 themeElement.color = Config.loadedTheme.main.backgroundMarked
               }
               onExited: function() {
-                hideThemePopup.start()
+                //hideThemePopup.start()
                 themeElement.color = Config.loadedTheme.main.background
               }
               acceptedButtons: Qt.LeftButton
@@ -128,58 +121,67 @@ Rectangle {
             Text {
               id: themeElementText
               anchors.centerIn: parent
-              text: modelData.name
+              text: modelData.icon
               color: Config.loadedTheme.font.color
             }
+                  
+      //color: "white"
+      // blur und schatten
+      layer.enabled: true
+      layer.effect: DropShadow {
+        radius: 16
+        samples: 24
+        color: "#fa0808ff"
+        //horizontalOffest: 0
+        verticalOffset: 10
+        source: FastBlur {
+          radius: 16
+          source: themeControlEntriesElements
+        }
+      }
+      
           }
         }
       }
       Behavior on opacity {
-        NumberAnimation {
-          duration: 500
-          easing.type: Easing.InOutQuad
-          //easing.type: Easing.BezierSpline
-          //easing.bezierCurve: [0.38, 1.21, 0.22, 1, 1, 1]
+        ParallelAnimation {
+          NumberAnimation {
+            duration: 500
+            //easing.type: Easing.InOutQuad
+            easing.type: Easing.BezierSpline
+            easing.bezierCurve: [0.38, 1.21, 0.22, 1, 1, 1]
+          }
         }
       }
-      Behavior on y {
+      Behavior on scale {
         NumberAnimation {
-          duration: 450
-          easing.type: Easing.OutCubic
+          duration: 500
+          //easing.type: Easing.InOutQuad
+          easing.type: Easing.BezierSpline
+          easing.bezierCurve: [0.38, 1.21, 0.22, 1, 1, 1]
         }
       }
       states: [
         State {
           name: "visible"
-          when: rootTheme.childVisible
+          when: themeRoot.childVisible
           PropertyChanges {
-            target: popupThemeMenuRect
+            target: themePopupContainer
             opacity: 1.0
-            y: rootTheme.height / 2 - height / 2
+            scale: 1
           }
         },
         State {
           name: "hidden"
-          when: !rootTheme.childVisible
-          PropertyChanges { target: popupThemeMenuRect; opacity: 0; }
+          when: !themeRoot.childVisible
+          PropertyChanges {
+            target: themePopupContainer
+            opacity: 0
+            scale: 0
+          }
         }
       ]
     }
-  }
-
-  Component.onCompleted: function() {
-    ColorHelper.addElement(rootTheme)
-  }
-
-  Timer {
-    id: hideThemePopup
-    interval: 1000
-    onTriggered: {
-      //popupThemeMenuRect.opacity = 0
-      //popupThemeMenu.visible = false
-      //rootTheme.color = Config.loadedTheme.main.background
-      rootTheme.childVisible = false
-      rootTheme.color = "transparent"
-    }
-  }
+  } //PopupWindow
 }
+//=========================================================================
