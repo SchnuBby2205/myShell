@@ -20,7 +20,8 @@ Item {
         color: "transparent"
         Text {
             id: activeWindow
-            color: Config.loadedTheme.font.color 
+            //color: Config.loadedTheme.font.color 
+            color: "#ffffff"
             anchors.centerIn: parent
             text: Hypr.activeWindow ? "[ " + Hypr.activeWindow.title + " ]" : ""
             font.family: Config.loadedTheme.font.standard

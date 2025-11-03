@@ -12,9 +12,15 @@ Rectangle {
   id: themeRoot
   implicitHeight: 20
   implicitWidth: 20
-  radius: 25
-  color: "red"
-  border.color: "green"
+  
+  //opacity: Config.loadedTheme.main.opacity
+  color: "transparent"
+  //border.color: Config.loadedTheme.main.bordercolor
+  radius: Config.loadedTheme.main.radius
+  
+  //radius: 25
+  //color: "red"
+  //border.color: "green"
   MouseArea {
     id: themeHover
     anchors.fill: parent
@@ -27,6 +33,7 @@ Rectangle {
 
       //color: "white"
       // blur und schatten
+      /*
       layer.enabled: true
       layer.effect: DropShadow {
         radius: 5
@@ -39,9 +46,10 @@ Rectangle {
           source: themeControlEntriesElements
         }
       }  
-
+      */
       Text {
         anchors.centerIn: parent
+        color: Config.loadedTheme.font.color 
         text: "󰔎"
       }
 
@@ -124,7 +132,6 @@ Rectangle {
               text: modelData.icon
               color: Config.loadedTheme.font.color
             }
-                  
       //color: "white"
       // blur und schatten
       layer.enabled: true
@@ -178,7 +185,6 @@ Rectangle {
             target: themePopupContainer
             opacity: 0
             scale: 0
-            visible: false
           }
         }
       ]

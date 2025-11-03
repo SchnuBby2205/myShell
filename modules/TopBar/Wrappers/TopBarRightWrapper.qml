@@ -28,9 +28,11 @@ Item {
         verticalCenter: parent.verticalCenter
         rightMargin: 5 
       }
+      /* Theme Widget deactivated... for now!
       TopBarThemeWidget {
         id: topBarThemeWidget
       }
+      */
       TopBarWallpaperWidget {
         id: topBarWallpaperWidget
       }
