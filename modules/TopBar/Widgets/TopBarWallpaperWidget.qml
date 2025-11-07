@@ -22,7 +22,8 @@ Rectangle {
     id: rootWallpaperText
     anchors.centerIn: parent
     text: "󰸉"
-    color: Config.loadedTheme.font.color
+    //color: Config.loadedTheme.font.color
+    color: Config.colors.colors.color10
   }
 
   MouseArea {

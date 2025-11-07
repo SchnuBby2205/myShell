@@ -11,6 +11,7 @@ Singleton {
     property var loadedTheme: {}
     property ListModel listThemes: ListModel{}
     property bool themesLoaded: false
+    property var colors: ""
 
     property alias appSettings: appSettings
     
@@ -39,6 +40,11 @@ Singleton {
             themesLoaded = true
         });
         appSettings.currentThemeId ? setTheme(appSettings.currentThemeId) : setTheme("dark")
+        JsonHelper.parseFile("/home/schnubby/.cache/wal/colors.json", (data) => {
+            colors = data;
+            console.log(colors.colors.color0)
+        });
+
     } 
     Connections {
         target: root

@@ -49,7 +49,8 @@ Rectangle {
       */
       Text {
         anchors.centerIn: parent
-        color: Config.loadedTheme.font.color 
+        //color: Config.loadedTheme.font.color 
+        color: Config.colors.colors.color10
         text: "󰔎"
       }
 

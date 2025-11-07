@@ -21,7 +21,8 @@ Item {
         Text {
             id: activeWindow
             //color: Config.loadedTheme.font.color 
-            color: "#ffffff"
+            //color: "#ffffff"
+            color: Config.colors.colors.color10
             anchors.centerIn: parent
             text: Hypr.activeWindow ? "[ " + Hypr.activeWindow.title + " ]" : ""
             font.family: Config.loadedTheme.font.standard
