@@ -50,7 +50,7 @@ Singleton {
       }
     }
   }
-  property alias wallpapersSetProc: wallpapersSetProc
+  //property alias wallpapersSetProc: wallpapersSetProc
   function setWallpaper(): void {
     Quickshell.execDetached("/bin/change_wallpaper.sh")
   }
