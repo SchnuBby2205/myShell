@@ -19,13 +19,15 @@ Singleton {
     var rnd = Math.floor(Math.random() * (arrWallpapers.length - 1))
     Config.appSettings.currentWallpaper = arrWallpapers[rnd]
     currentWallpaper = wallpaperDir + arrWallpapers[rnd]
-    wallpapersSetProc.running = true
+    //wallpapersSetProc.running = true
+    setWallpaper()
   }
   function togglePicker(): void {
     cacheWallpapers()
     wallpapersReadProc.running = true
     //wallpaperPicker.visible = !wallpaperPicker.visible
-    wallpapersSetProc.running = true
+    //wallpapersSetProc.running = true
+    setWallpaper()
   }
   function cacheWallpapers(): void {
     Quickshell.execDetached("/bin/create_thumbnails.sh")
@@ -49,17 +51,21 @@ Singleton {
     }
   }
   property alias wallpapersSetProc: wallpapersSetProc
+  function setWallpaper(): void {
+    Quickshell.execDetached("/bin/change_wallpaper.sh")
+  }
+  /*
   Process {
     id: wallpapersSetProc
     //command: ["matugen", "image", currentWallpaper]
     //command: ["/bin/change_wallpaper.sh"]
     Quickshell.execDetached("/bin/change_wallpaper.sh")
-    /*
     stdout: StdioCollector {
       onStreamFinished: Quickshell.execDetached("/bin/reload_shell.sh")
     }
-    */
+    
   } 
+  */
   /*
   FloatingWindow {
     id: wallpaperPicker
@@ -105,7 +111,8 @@ Singleton {
                   Config.appSettings.currentWallpaper = modelData.icon
                   currentWallpaper = wallpaperDir + modelData.icon
                   console.log(currentWallpaper)
-                  wallpapersSetProc.running = true
+                  //wallpapersSetProc.running = true
+                  setWallpaper()
                 }
               }
             }  
