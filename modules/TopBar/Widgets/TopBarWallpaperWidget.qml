@@ -46,7 +46,10 @@ Rectangle {
         Wallpaper.setRandomWallpaper()
         Quickshell.execDetached("/bin/reload_shell.sh")
       }
-      if(mouse.button == Qt.RightButton) {Wallpaper.togglePicker()}
+      if(mouse.button == Qt.RightButton) {
+        Wallpaper.togglePicker()
+        Quickshell.execDetached("/bin/reload_shell.sh")
+      }
     }
   }
 
