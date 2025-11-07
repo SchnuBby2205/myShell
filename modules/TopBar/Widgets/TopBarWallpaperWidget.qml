@@ -44,7 +44,6 @@ Rectangle {
     onClicked: function(mouse) {
       if(mouse.button == Qt.LeftButton) {
         Wallpaper.setRandomWallpaper()
-        Quickshell.execDetached("/bin/reload_shell.sh")
       }
       if(mouse.button == Qt.RightButton) {
         Wallpaper.togglePicker()
@@ -125,7 +124,7 @@ Rectangle {
   
   Component.onCompleted: {
     Wallpaper.cacheWallpapers()
-    wallpapersReadProc.running = true
+    Wallpaper.wallpapersReadProc.running = true
     ColorHelper.addElement(rootWallpaper)
   }
 
