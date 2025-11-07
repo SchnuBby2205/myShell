@@ -49,7 +49,7 @@ Singleton {
   }
   Process {
     id: wallpapersSetProc
-    command: ["swww", "img", currentWallpaper]
+    command: ["matugen", "image", currentWallpaper]
   } 
   FloatingWindow {
     id: wallpaperPicker
