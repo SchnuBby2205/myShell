@@ -25,7 +25,7 @@ Rectangle {
     anchors.centerIn: parent
     text: "󰤆"
     //color: Config.loadedTheme.font.color
-    color: Config.colors.colors.color10
+    color: Config.colors.primary_container
   }
 
   MouseArea {
@@ -68,7 +68,7 @@ Rectangle {
       radius: 25
       //color: "#222222AA"
       //color: "white"
-      //color: Config.colors.colors.color10
+      //color: Config.colors.primary_container
       color: "transparent"
       Column {
         anchors {
@@ -96,7 +96,7 @@ Rectangle {
 
             opacity: Config.loadedTheme.main.opacity
             //color: Config.loadedTheme.main.background
-            color: Config.colors.colors.color10
+            color: Config.colors.primary_container
             border.color: Config.loadedTheme.main.bordercolor
             radius: Config.loadedTheme.main.radius
 
@@ -109,12 +109,12 @@ Rectangle {
               hoverEnabled: true
               onEntered: function() {
                 hidePowerPopup.stop()
-                themeElement.color = Config.colors.colors.color15
+                themeElement.color = Config.colors.primary_container
               }
               onExited: function() {
                 //hideThemePopup.start()
                 hidePowerPopup.start()
-                themeElement.color = Config.colors.colors.color10
+                themeElement.color = Config.colors.primary_container
               }
               acceptedButtons: Qt.LeftButton
               onClicked: function() {

@@ -22,7 +22,7 @@ Rectangle {
   Text {
     id: activeSink
     //color: Config.loadedTheme.font.color 
-    color: Config.colors.colors.color10
+    color: Config.colors.primary_container
     text: Sound.getVolumeIcon()
   }
 }

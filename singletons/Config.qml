@@ -32,15 +32,16 @@ Singleton {
         Qt.application.organization = "myShell"
         Qt.application.domain = "https://github.com/SchnuBby2205"
         Qt.application.name = "myShell"
-
+        
         JsonHelper.parseFile("../Configs/themes.json", (data) => {
             for (var i = 0; i < data.length; ++i) {
                 listThemes.append(data[i])
             }        
             themesLoaded = true
         });
+                
         appSettings.currentThemeId ? setTheme(appSettings.currentThemeId) : setTheme("dark")
-        JsonHelper.parseFile("/home/schnubby/.cache/wal/colors.json", (data) => {
+        JsonHelper.parseFile("../Configs/colors.json", (data) => {
             colors = data;
         });
 

@@ -23,7 +23,7 @@ Rectangle {
     anchors.centerIn: parent
     text: "󰸉"
     //color: Config.loadedTheme.font.color
-    color: Config.colors.colors.color10
+    color: Config.colors.primary_container
   }
 
   MouseArea {
