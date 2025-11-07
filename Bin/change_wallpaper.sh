@@ -14,3 +14,4 @@ done | rofi -dmenu)
 matugen image ${wallpaperDir}/${wallpaper}
 
 cd $returnDir
+/bin/reload_shell.sh

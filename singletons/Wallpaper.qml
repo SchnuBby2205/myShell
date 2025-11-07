@@ -53,9 +53,11 @@ Singleton {
     id: wallpapersSetProc
     //command: ["matugen", "image", currentWallpaper]
     command: ["/bin/change_wallpaper.sh"]
+    /*
     stdout: StdioCollector {
       onStreamFinished: Quickshell.execDetached("/bin/reload_shell.sh")
     }
+    */
   } 
   /*
   FloatingWindow {
