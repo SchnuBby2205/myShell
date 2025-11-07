@@ -15,8 +15,8 @@ for i in *.jpg *.png; do
     if [[ ! -e "$dst" || "$src" -nt "$dst" ]]; then
         #echo -e "converting: $fname"
         magick "$wallpaperDir$i" -thumbnail 100x100^ -gravity center -extent 100x100 -quality 75 "$cacheDir$fname"
-#    else
-#       echo -e "skipping: $fname"
+    #else
+       #echo -e "skipping: $fname"
     fi
 done
 
