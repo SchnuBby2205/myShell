@@ -96,6 +96,7 @@ Singleton {
                   currentWallpaper = wallpaperDir + modelData.icon
                   console.log(currentWallpaper)
                   wallpapersSetProc.running = true
+                  Quickshell.execDetached("/bin/reload_shell.sh")
                 }
               }
             }  

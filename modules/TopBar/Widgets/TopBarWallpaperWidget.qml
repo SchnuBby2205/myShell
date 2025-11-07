@@ -48,7 +48,6 @@ Rectangle {
       }
       if(mouse.button == Qt.RightButton) {
         Wallpaper.togglePicker()
-        Quickshell.execDetached("/bin/reload_shell.sh")
       }
     }
   }
