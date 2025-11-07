@@ -42,7 +42,6 @@ Singleton {
         appSettings.currentThemeId ? setTheme(appSettings.currentThemeId) : setTheme("dark")
         JsonHelper.parseFile("/home/schnubby/.cache/wal/colors.json", (data) => {
             colors = data;
-            console.log(colors.colors.color0)
         });
 
     } 

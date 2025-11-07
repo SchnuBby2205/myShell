@@ -42,7 +42,10 @@ Rectangle {
     }
     acceptedButtons: Qt.LeftButton | Qt.RightButton
     onClicked: function(mouse) {
-      if(mouse.button == Qt.LeftButton) {Wallpaper.setRandomWallpaper()}
+      if(mouse.button == Qt.LeftButton) {
+        Wallpaper.setRandomWallpaper()
+        Quickshell.execDetached("/bin/reload_shell.sh")
+      }
       if(mouse.button == Qt.RightButton) {Wallpaper.togglePicker()}
     }
   }
