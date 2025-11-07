@@ -125,6 +125,7 @@ Rectangle {
   
   Component.onCompleted: {
     Wallpaper.cacheWallpapers()
+    wallpapersReadProc.running = true
     ColorHelper.addElement(rootWallpaper)
   }
 
