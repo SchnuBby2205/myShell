@@ -80,7 +80,7 @@ Singleton {
             verticalCenter: parent.verticalCenter
             horizontalCenter: parent.hoarizontalCenter
           }
-          columns: 16
+          columns: 8
           spacing: 15
           Repeater {
             id: test
