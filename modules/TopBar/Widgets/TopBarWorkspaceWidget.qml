@@ -34,7 +34,8 @@ Item {
             implicitWidth: 20
             radius: 25
             //color: Hypr.activeWS && modelData.id == Hypr.activeWS.id ? Config.loadedTheme.main.backgroundMarked : "grey"
-            color: Hypr.activeWS && modelData.id == Hypr.activeWS.id ? Config.colors.colors.color10 : Config.colors.colors.color13
+            color: Hypr.activeWS && modelData.id == Hypr.activeWS.id ? Config.colors.colors.color10 : Config.colors.colors.color15
+            opacity: Hypr.activeWS && modelData.id == Hypr.activeWS.id ? 1 : 0.25
             Text {
               id: workspaceId
               font.family: Config.loadedTheme.font.standard

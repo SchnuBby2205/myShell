@@ -30,7 +30,8 @@ Rectangle {
     anchors.fill: parent
     hoverEnabled: true
     onEntered: function() {
-      PopupHandler.show(popupPowerMenu, rootPower)
+      //PopupHandler.show(popupPowerMenu, rootPower)
+      popupPowerMenu.visible = true
       flyIn.running = true
       hidePowerPopup.stop()
     }

@@ -29,12 +29,14 @@ Rectangle {
   MouseArea {
     id: wallpaperControl
     anchors.fill: parent
-    hoverEnabled: true
+    //hoverEnabled: true
+    /*
     onEntered: function() {
       PopupHandler.show(popupWallpaperMenu, rootWallpaper)
       flyIn.running = true
       hideWallpaperPopup.stop()
     }
+    */
     onExited: function() {
       hideWallpaperPopup.start()
     }
