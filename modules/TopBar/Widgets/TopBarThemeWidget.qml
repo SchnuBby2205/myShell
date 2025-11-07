@@ -70,7 +70,7 @@ Rectangle {
     implicitHeight: Config.listThemes.count * 50
     color: "transparent"
     Rectangle {
-      border.color: "#fa0808ff"
+      //border.color: "#fa0808ff"
 
       scale: 0
       id: themePopupContainer
@@ -78,7 +78,9 @@ Rectangle {
       opacity: 0
       radius: 25
       //color: "#222222AA"
-      color: "white"
+      //color: "white"
+      //color: Config.colors.colors.color10
+      color: "transparent"
       Column {
         anchors {
           topMargin: 15 
@@ -95,7 +97,8 @@ Rectangle {
             required property var modelData
 
             opacity: Config.loadedTheme.main.opacity
-            color: Config.loadedTheme.main.background
+            //color: Config.loadedTheme.main.background
+            color: Config.colors.colors.color10
             border.color: Config.loadedTheme.main.bordercolor
             radius: Config.loadedTheme.main.radius
 
@@ -108,11 +111,11 @@ Rectangle {
               hoverEnabled: true
               onEntered: function() {
                 //hideThemePopup.stop()
-                themeElement.color = Config.loadedTheme.main.backgroundMarked
+                themeElement.color = Config.colors.colors.color15
               }
               onExited: function() {
                 //hideThemePopup.start()
-                themeElement.color = Config.loadedTheme.main.background
+                themeElement.color = Config.colors.colors.color10
               }
               acceptedButtons: Qt.LeftButton
               onClicked: function() {
@@ -137,11 +140,11 @@ Rectangle {
       // blur und schatten
       layer.enabled: true
       layer.effect: DropShadow {
-        radius: 16
-        samples: 24
+        radius: 10
+        samples: 25
         color: "#fa0808ff"
         //horizontalOffest: 0
-        verticalOffset: 10
+        verticalOffset: 0
         source: FastBlur {
           radius: 16
           source: themeControlEntriesElements

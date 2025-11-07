@@ -1,6 +1,9 @@
-import Quickshell
 import Quickshell.Io
+import Quickshell
 import QtQuick
+import QtQuick.Controls
+import Qt5Compat.GraphicalEffects
+
 
 import "../../../singletons/"
 
@@ -32,36 +35,41 @@ Rectangle {
     onEntered: function() {
       //PopupHandler.show(popupPowerMenu, rootPower)
       popupPowerMenu.visible = true
-      flyIn.running = true
+      //flyIn.running = true
       hidePowerPopup.stop()
+      //childVisible = !childVisible
+      childVisible = true
     }
     onExited: function() {
       hidePowerPopup.start()
     }
   }
-
+  property bool childVisible: false
   PopupWindow {
     id: popupPowerMenu
-    visible: false
-    anchor.window: topBar 
+    anchor.window: topBar
+    
+    // Nutze ein eigenes Property zur Animation:
+    property real popupOffset: 5
+
+    anchor.rect.x: topBar.width
+    anchor.rect.y: topBar.height + popupOffset
+    //anchor.rect.y: 0
+    implicitWidth: 200
+    implicitHeight: Config.listThemes.count * 50
     color: "transparent"
-
-    anchor.rect.x: parentWindow.width 
-    // anchor.rect.y: parentWindow.height
-    anchor.rect.y: 0
-
-    implicitWidth: 200  
-    implicitHeight: 100
-
     Rectangle {
-      id: popupPowerMenuRect
-      anchors.fill: parent
+      //border.color: "#fa0808ff"
 
-      opacity: Config.loadedTheme.main.opacity
-      color: Config.loadedTheme.main.background
-      border.color: Config.loadedTheme.main.bordercolor
-      radius: Config.loadedTheme.main.radius
-      
+      scale: 0
+      id: themePopupContainer
+      anchors.fill: parent
+      opacity: 0
+      radius: 25
+      //color: "#222222AA"
+      //color: "white"
+      //color: Config.colors.colors.color10
+      color: "transparent"
       Column {
         anchors {
           topMargin: 15 
@@ -71,23 +79,24 @@ Rectangle {
         spacing: 10 
 
         Repeater {
-          id: powerControlEntriesElements
+          id: themeControlEntriesElements
           model: ListModel {
             ListElement {
-              name: "Reboot"
+              name: "󰜉"
               command: "reboot"
             }
             ListElement {
-              name: "Shutdown"
+              name: "󰐥"
               command: "shutdown"
             }
           }
           Rectangle {
-            id: powerElement
+            id: themeElement
             required property var modelData
 
             opacity: Config.loadedTheme.main.opacity
-            color: Config.loadedTheme.main.background
+            //color: Config.loadedTheme.main.background
+            color: Config.colors.colors.color10
             border.color: Config.loadedTheme.main.bordercolor
             radius: Config.loadedTheme.main.radius
 
@@ -100,15 +109,17 @@ Rectangle {
               hoverEnabled: true
               onEntered: function() {
                 hidePowerPopup.stop()
-                powerElement.color = Config.loadedTheme.main.backgroundMarked
+                themeElement.color = Config.colors.colors.color15
               }
               onExited: function() {
+                //hideThemePopup.start()
                 hidePowerPopup.start()
-                powerElement.color = Config.loadedTheme.main.background
+                themeElement.color = Config.colors.colors.color10
               }
               acceptedButtons: Qt.LeftButton
               onClicked: function() {
                 modelData.command == "reboot" ? restartProc.running = true : shutdownProc.running = true
+                popupPowerMenu.visible = false
               }
             }
 
@@ -118,27 +129,65 @@ Rectangle {
               text: modelData.name
               color: Config.loadedTheme.font.color
             }
+      //color: "white"
+      // blur und schatten
+      layer.enabled: true
+      layer.effect: DropShadow {
+        radius: 10
+        samples: 25
+        color: "#fa0808ff"
+        //horizontalOffest: 0
+        verticalOffset: 0
+        source: FastBlur {
+          radius: 16
+          source: themeControlEntriesElements
+        }
+      }
+      
           }
         }
       }
-      ParallelAnimation {
-        id: flyIn
-        //running: true
-        NumberAnimation { target: popupPowerMenu; property: "anchor.rect.y"; to: 35; duration: 100 }
-        NumberAnimation { target: popupPowerMenuRect; property: "opacity"; to: Config.loadedTheme.main.opacity; duration: 100 }
-      }
-      SequentialAnimation {
-        id: flyOut
+      Behavior on opacity {
         ParallelAnimation {
-          //running: true
-          NumberAnimation { target: popupPowerMenu; property: "anchor.rect.y"; to: 0; duration: 100 }
-          NumberAnimation { target: popupPowerMenuRect; property: "opacity"; to: 0; duration: 100 }
+          NumberAnimation {
+            duration: 500
+            //easing.type: Easing.InOutQuad
+            easing.type: Easing.BezierSpline
+            easing.bezierCurve: [0.38, 1.21, 0.22, 1, 1, 1]
+          }
         }
-        PropertyAction {target: popupPowerMenu; property: "visible"; value: false}
       }
-
+      Behavior on scale {
+        NumberAnimation {
+          duration: 500
+          //easing.type: Easing.InOutQuad
+          easing.type: Easing.BezierSpline
+          easing.bezierCurve: [0.38, 1.21, 0.22, 1, 1, 1]
+        }
+      }
+      states: [
+        State {
+          name: "visible"
+          when: rootPower.childVisible
+          PropertyChanges {
+            target: themePopupContainer
+            opacity: 1.0
+            scale: 1
+          }
+        },
+        State {
+          name: "hidden"
+          when: !rootPower.childVisible
+          PropertyChanges {
+            target: themePopupContainer
+            opacity: 0
+            scale: 0
+          }
+        }
+      ]
     }
-  }
+  } //PopupWindow
+
 
   Process {
     id: shutdownProc
@@ -156,10 +205,11 @@ Rectangle {
 
   Timer {
     id: hidePowerPopup
-    interval: 1000
+    interval: 250
     onTriggered: {
       //popupPowerMenu.visible = false
-      flyOut.running = true
+      //flyOut.running = true
+      childVisible = false
       //rootPower.color = Config.loadedTheme.main.background
       rootPower.color = "transparent"
     }

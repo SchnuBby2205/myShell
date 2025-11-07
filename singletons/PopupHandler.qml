@@ -14,7 +14,7 @@ QtObject {
         currentPopup = popup
         popup.visible = true
         currentControl = control
-        control.color = Config.loadedTheme.main.backgroundMarked
+        //control.color = Config.loadedTheme.main.backgroundMarked
     }
     function hideCurrent() {
         if (currentPopup) {
