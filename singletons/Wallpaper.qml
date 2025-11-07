@@ -50,6 +50,9 @@ Singleton {
   Process {
     id: wallpapersSetProc
     command: ["matugen", "image", currentWallpaper]
+    stdout: StdioCollector {
+      onStreamFinished: Quickshell.execDetached("/bin/reload_shell.sh")
+    }
   } 
   FloatingWindow {
     id: wallpaperPicker
@@ -96,7 +99,6 @@ Singleton {
                   currentWallpaper = wallpaperDir + modelData.icon
                   console.log(currentWallpaper)
                   wallpapersSetProc.running = true
-                  Quickshell.execDetached("/bin/reload_shell.sh")
                 }
               }
             }  
