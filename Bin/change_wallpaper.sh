@@ -7,9 +7,9 @@ returnDir=$PWD
 cd $cacheDir
 
 wallpaper=$(for a in *.jpg; do
-    echo -en "$a\0icon\x1f$a\n"  
+    echo -en "$a\0icon\x1f$a\n"
     #echo $a
-done | rofi -dmenu)
+done | rofi -dmenu -theme gruvbox-material_icons.rasi)
 
 matugen image ${wallpaperDir}/${wallpaper}
 sed -i ':a;$!N;$!ba;s/,\s*}/}/' ~/.config/quickshell/myShell/Configs/colors.json
