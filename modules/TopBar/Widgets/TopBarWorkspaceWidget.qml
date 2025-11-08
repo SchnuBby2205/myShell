@@ -19,6 +19,7 @@ Item {
       //color: "#222222AA"
       //color: "transparent"
       color: Config.colors.secondary_container + "00"
+      border.color: Config.colors.primary_container
       Row {
         id: workspaceRow
         spacing: 5
