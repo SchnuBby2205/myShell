@@ -51,13 +51,14 @@ Item {
       }
     }
   }
+  /*
   // 2) ShaderEffectSource für das Widget
   ShaderEffectSource {
       id: widgetSource
       sourceItem: powerWidgetRect
       live: true
       recursive: true
-  }
+  }  
   // 3) FastBlur (optional, wenn du Frosted-Glass-Look willst)
   FastBlur {
       id: widgetBlur
@@ -65,6 +66,7 @@ Item {
       source: widgetSource
       radius: 10    // Stärke des Blurs
   }
+  
   // 4) DropShadow
   DropShadow {
       anchors.fill: powerWidgetRect
@@ -75,4 +77,5 @@ Item {
       horizontalOffset: 0
       verticalOffset: 4
   }
+  */ 
 }

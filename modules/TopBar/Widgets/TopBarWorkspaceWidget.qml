@@ -57,6 +57,7 @@ Item {
         }
       }
     }
+    /*
     // 2) ShaderEffectSource für das Widget
     ShaderEffectSource {
         id: widgetSource
@@ -81,6 +82,7 @@ Item {
         horizontalOffset: 0
         verticalOffset: 4
     }
+    */
 }
 //===================================
 
