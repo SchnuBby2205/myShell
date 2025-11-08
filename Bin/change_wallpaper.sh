@@ -12,6 +12,7 @@ wallpaper=$(for a in *.jpg; do
 done | rofi -dmenu)
 
 matugen image ${wallpaperDir}/${wallpaper}
+sed -i ':a;$!N;$!ba;s/,\s*}/}/' ~/.config/quickshell/myShell/Configs/colors.json
 
 cd $returnDir
 /bin/reload_shell.sh
