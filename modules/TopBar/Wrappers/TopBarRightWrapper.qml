@@ -19,7 +19,7 @@ Item {
     radius: 25
     //color: "#222222AA"
     //color: "transparent"
-    color: Config.colors.secondary_container + "00"
+    //color: Config.colors.secondary_container + "00"
     //border.color: Config.colors.primary_container
     //opacity: 0.25
 

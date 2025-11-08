@@ -18,7 +18,7 @@ Item {
         radius: Config.loadedTheme.main.radius
         //color: "#222222AA"
         //color: "transparent"
-        color: Config.colors.secondary_container + "00"
+        //color: Config.colors.secondary_container + "00"
         //border.color: Config.colors.primary_container
         Text {
             id: activeWindow
