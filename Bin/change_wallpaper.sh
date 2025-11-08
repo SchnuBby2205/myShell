@@ -6,7 +6,7 @@ returnDir=$PWD
 
 cd $cacheDir
 
-wallpaper=$(for a in *.jpg; do
+wallpaper=$(for a in *.jpg *.png; do
     echo -en "$a\0icon\x1f$a\n"
     #echo $a
 done | rofi -dmenu -theme gruvbox-material_icons.rasi)
