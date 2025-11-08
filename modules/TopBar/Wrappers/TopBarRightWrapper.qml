@@ -4,6 +4,7 @@ import QtQuick.Controls
 import Qt5Compat.GraphicalEffects
 
 import "../Widgets/"
+import "../../../singletons/"
 
 Item {
   id: powerWrapper
@@ -13,12 +14,13 @@ Item {
   Rectangle {
     id: powerWidgetRect
     implicitHeight: 30
-    implicitWidth: 150
+    implicitWidth: 115
     //radius: Config.loadedTheme.main.radius
     radius: 25
     //color: "#222222AA"
-    color: "transparent"
-    //color: "white"
+    //color: "transparent"
+    color: Config.colors.secondary_container + "00"
+    //opacity: 0.25
 
     Row {
       id: itemWrapper

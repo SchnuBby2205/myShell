@@ -17,7 +17,8 @@ Item {
       implicitWidth: 105
       radius: Config.loadedTheme.main.radius
       //color: "#222222AA"
-      color: "transparent"
+      //color: "transparent"
+      color: Config.colors.secondary_container + "00"
       Row {
         id: workspaceRow
         spacing: 5

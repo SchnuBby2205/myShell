@@ -17,7 +17,8 @@ Item {
         implicitWidth: 600
         radius: Config.loadedTheme.main.radius
         //color: "#222222AA"
-        color: "transparent"
+        //color: "transparent"
+        color: Config.colors.secondary_container + "00"
         Text {
             id: activeWindow
             //color: Config.loadedTheme.font.color 
