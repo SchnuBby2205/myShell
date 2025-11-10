@@ -33,7 +33,8 @@ Item {
           model: Hypr.ws
           Rectangle {
             implicitHeight: 20
-            implicitWidth: 20
+            //implicitWidth: 20
+            implicitWidth: Hypr.activeWS && modelData.id == Hypr.activeWS.id ? 50 : 20
             radius: 25
             //color: Hypr.activeWS && modelData.id == Hypr.activeWS.id ? Config.loadedTheme.main.backgroundMarked : "grey"
             color: Hypr.activeWS && modelData.id == Hypr.activeWS.id ? Config.colors.primary_container : Config.colors.primary_container
@@ -41,6 +42,7 @@ Item {
             Text {
               id: workspaceId
               font.family: Config.loadedTheme.font.standard
+              text: Hypr.activeWS && modelData.id == Hypr.activeWS.id ? modelData.name : ""
               anchors {
                 centerIn: parent
                 verticalCenter: parent.verticalCenter
