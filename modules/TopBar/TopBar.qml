@@ -20,6 +20,6 @@ PanelWindow {
   }
   color: "transparent"
   TopBarWorkspaceWidget {}
-  TopBarActiveWindowWidget {x: parent.width / 2 - 300}
+  /*TopBarActiveWindowWidget {x: parent.width / 2 - 300}*/
   TopBarRightWrapper {x: parent.width - 115}
 }
