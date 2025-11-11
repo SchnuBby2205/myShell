@@ -55,6 +55,14 @@ Item {
                 Hypr.dispatchWS(modelData.id)
               }
             }
+            Behavior on implicitWidth {
+              NumberAnimation {
+                duration: 500
+                //easing.type: Easing.InOutQuad
+                easing.type: Easing.BezierSpline
+                easing.bezierCurve: [0.38, 1.21, 0.22, 1, 1, 1]
+              }
+            }
           }
         }
       }
