@@ -131,6 +131,7 @@ Rectangle {
             }
       //color: "white"
       // blur und schatten
+      /*
       layer.enabled: true
       layer.effect: DropShadow {
         radius: 10
@@ -143,6 +144,7 @@ Rectangle {
           source: themeControlEntriesElements
         }
       }
+      */
       
           }
         }
