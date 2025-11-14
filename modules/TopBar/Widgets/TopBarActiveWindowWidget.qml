@@ -18,13 +18,13 @@ Item {
         radius: Config.loadedTheme.main.radius
         //color: "#222222AA"
         color: "transparent"
-        //color: Config.colors.secondary_container + "AA"
-        //border.color: Config.colors.primary_container
+        //color: Config.colors.secondary + "AA"
+        //border.color: Config.colors.primary
         Text {
             id: activeWindow
             //color: Config.loadedTheme.font.color 
             //color: "#ffffff"
-            color: Config.colors.primary_container
+            color: Config.colors.primary
             anchors.centerIn: parent
             text: Hypr.activeWindow ? "[ " + Hypr.activeWindow.title + " ]" : ""
             font.family: Config.loadedTheme.font.standard

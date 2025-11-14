@@ -20,7 +20,7 @@
 
 "on_primary": "#462a00",
 
-"on_primary_container": "#ffddb7",
+"on_primary": "#ffddb7",
 
 "on_primary_fixed": "#2a1700",
 
@@ -28,7 +28,7 @@
 
 "on_secondary": "#3f2d17",
 
-"on_secondary_container": "#fcddbc",
+"on_secondary": "#fcddbc",
 
 "on_secondary_fixed": "#281805",
 
@@ -52,7 +52,7 @@
 
 "primary": "#f7bb70",
 
-"primary_container": "#653e00",
+"primary": "#653e00",
 
 "primary_fixed": "#ffddb7",
 
@@ -62,7 +62,7 @@
 
 "secondary": "#dfc2a2",
 
-"secondary_container": "#57432a",
+"secondary": "#57432a",
 
 "secondary_fixed": "#fcddbc",
 

@@ -50,7 +50,7 @@ Rectangle {
       Text {
         anchors.centerIn: parent
         //color: Config.loadedTheme.font.color 
-        color: Config.colors.primary_container
+        color: Config.colors.primary
         text: "󰔎"
       }
 
@@ -79,7 +79,7 @@ Rectangle {
       radius: 25
       //color: "#222222AA"
       //color: "white"
-      //color: Config.colors.primary_container
+      //color: Config.colors.primary
       color: "transparent"
       Column {
         anchors {
@@ -98,7 +98,7 @@ Rectangle {
 
             opacity: Config.loadedTheme.main.opacity
             //color: Config.loadedTheme.main.background
-            color: Config.colors.primary_container
+            color: Config.colors.primary
             border.color: Config.loadedTheme.main.bordercolor
             radius: Config.loadedTheme.main.radius
 
@@ -111,11 +111,11 @@ Rectangle {
               hoverEnabled: true
               onEntered: function() {
                 //hideThemePopup.stop()
-                themeElement.color = Config.colors.primary_container
+                themeElement.color = Config.colors.primary
               }
               onExited: function() {
                 //hideThemePopup.start()
-                themeElement.color = Config.colors.primary_container
+                themeElement.color = Config.colors.primary
               }
               acceptedButtons: Qt.LeftButton
               onClicked: function() {

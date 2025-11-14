@@ -18,8 +18,8 @@ Item {
       radius: Config.loadedTheme.main.radius
       //color: "#222222AA"
       color: "transparent"      
-      //color: Config.colors.secondary_container + "AA"
-      //border.color: Config.colors.primary_container
+      //color: Config.colors.secondary + "AA"
+      //border.color: Config.colors.primary
       Row {
         id: workspaceRow
         spacing: 5
@@ -37,7 +37,7 @@ Item {
             implicitWidth: Hypr.activeWS && modelData.id == Hypr.activeWS.id ? 50 : 20
             radius: 25
             //color: Hypr.activeWS && modelData.id == Hypr.activeWS.id ? Config.loadedTheme.main.backgroundMarked : "grey"
-            color: Hypr.activeWS && modelData.id == Hypr.activeWS.id ? Config.colors.primary_container : Config.colors.primary_container
+            color: Hypr.activeWS && modelData.id == Hypr.activeWS.id ? Config.colors.primary : Config.colors.primary
             opacity: Hypr.activeWS && modelData.id == Hypr.activeWS.id ? 1 : 0.25
             Text {
               id: workspaceId
