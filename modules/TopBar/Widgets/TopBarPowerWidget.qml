@@ -59,7 +59,7 @@ Rectangle {
     implicitHeight: Config.listThemes.count * 50
     color: "transparent"
     Rectangle {
-      //border.color: "#fa0808ff"
+      border.color: Config.colors.primary
 
       scale: 0
       id: themePopupContainer
@@ -68,8 +68,8 @@ Rectangle {
       radius: 25
       //color: "#222222AA"
       //color: "white"
-      //color: Config.colors.primary
-      color: "transparent"
+      color: Config.colors.primary_container
+      //color: "transparent"
       Column {
         anchors {
           topMargin: 15 
@@ -96,7 +96,7 @@ Rectangle {
 
             opacity: Config.loadedTheme.main.opacity
             //color: Config.loadedTheme.main.background
-            color: Config.colors.primary
+            color: Config.colors.primary_container
             border.color: Config.loadedTheme.main.bordercolor
             radius: Config.loadedTheme.main.radius
 
@@ -114,7 +114,7 @@ Rectangle {
               onExited: function() {
                 //hideThemePopup.start()
                 hidePowerPopup.start()
-                themeElement.color = Config.colors.primary
+                themeElement.color = Config.colors.primary_container
               }
               acceptedButtons: Qt.LeftButton
               onClicked: function() {
