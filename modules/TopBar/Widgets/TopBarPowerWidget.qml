@@ -96,7 +96,7 @@ Rectangle {
 
             opacity: Config.loadedTheme.main.opacity
             //color: Config.loadedTheme.main.background
-            color: Config.colors.primary_container
+            color: Config.colors.primary
             border.color: Config.loadedTheme.main.bordercolor
             radius: Config.loadedTheme.main.radius
 
