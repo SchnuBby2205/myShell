@@ -11,7 +11,7 @@ wallpaper=$(for a in *.jpg *.png; do
     #echo $a
 done | rofi -dmenu -theme gruvbox-material_icons.rasi)
 
-matugen image ${wallpaperDir}/${wallpaper}
+matugen image ${wallpaperDir}${wallpaper}
 sed -i ':a;$!N;$!ba;s/,\s*}/}/' ~/.config/quickshell/myShell/Configs/colors.json
 
 cd $returnDir
